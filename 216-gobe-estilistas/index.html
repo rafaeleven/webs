@@ -1,0 +1,480 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GOBÉ estilistas — Peluquería y estética en Santa Cruz de Tenerife</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#211d1a;
+    --paper:#f4efe8;
+    --paper-soft:#efe8de;
+    --bronze:#b98a5e;
+    --bronze-deep:#9a6f47;
+    --stone:#8c8378;
+    --line:rgba(33,29,26,.12);
+    --radius:22px;
+    --ease:cubic-bezier(.22,.61,.2,1);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Manrope",system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--bronze);color:#fff}
+  h1,h2,h3,.serif{font-family:"Fraunces",serif;font-weight:400;letter-spacing:-.02em}
+  img,svg{max-width:100%;display:block}
+  a{color:inherit}
+
+  /* ——— watermark DEMO ——— */
+  .demo-badge{
+    position:fixed;bottom:14px;left:14px;z-index:90;
+    font-size:.66rem;font-weight:700;letter-spacing:.18em;
+    padding:.42em .9em;border-radius:999px;
+    background:rgba(33,29,26,.82);color:var(--paper);
+    backdrop-filter:blur(6px);pointer-events:none;
+    text-transform:uppercase;
+  }
+
+  /* ——— nav ——— */
+  header{
+    position:sticky;top:0;z-index:80;
+    background:color-mix(in srgb,var(--paper) 82%,transparent);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    max-width:1120px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:.85rem 1.25rem;
+  }
+  .logo{font-family:"Fraunces",serif;font-size:1.35rem;letter-spacing:.14em;text-decoration:none;font-weight:500}
+  .logo em{font-style:normal;color:var(--bronze)}
+  .nav-links{display:none;gap:1.8rem;list-style:none;font-size:.86rem;font-weight:600}
+  .nav-links a{text-decoration:none;opacity:.75;transition:opacity .25s}
+  .nav-links a:hover{opacity:1}
+  .nav-cta{
+    font-size:.82rem;font-weight:700;text-decoration:none;
+    padding:.62em 1.25em;border-radius:999px;
+    background:var(--ink);color:var(--paper);
+    transition:transform .25s var(--ease),background .25s;
+  }
+  .nav-cta:hover{background:var(--bronze-deep);transform:translateY(-1px)}
+  @media(min-width:760px){.nav-links{display:flex}}
+
+  /* ——— hero ——— */
+  .hero{position:relative;overflow:hidden;padding:4.2rem 1.25rem 3.4rem}
+  .hero-inner{max-width:1120px;margin:0 auto;position:relative;z-index:2}
+  .hero-blob{
+    position:absolute;z-index:1;border-radius:50%;filter:blur(70px);opacity:.55;pointer-events:none;
+  }
+  .hero-blob.b1{width:520px;height:520px;right:-160px;top:-140px;
+    background:radial-gradient(circle,#d9b48b 0%,rgba(217,180,139,0) 70%)}
+  .hero-blob.b2{width:420px;height:420px;left:-180px;bottom:-200px;
+    background:radial-gradient(circle,#cfc3b2 0%,rgba(207,195,178,0) 70%)}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:.55em;
+    font-size:.74rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--bronze-deep);margin-bottom:1.3rem;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--bronze)}
+  .hero h1{
+    font-size:clamp(2.7rem,9vw,5.4rem);
+    line-height:1.02;max-width:11ch;
+    font-weight:350;
+  }
+  .hero h1 em{font-style:italic;color:var(--bronze-deep)}
+  .hero p.lead{
+    margin-top:1.4rem;max-width:34rem;font-size:1.02rem;color:#4c453e;
+  }
+  .rating{
+    display:inline-flex;align-items:center;gap:.6em;margin-top:1.5rem;
+    background:#fff;border:1px solid var(--line);border-radius:999px;
+    padding:.55em 1.1em;font-size:.86rem;font-weight:600;
+    box-shadow:0 6px 24px rgba(33,29,26,.06);
+  }
+  .rating .stars{color:var(--bronze);letter-spacing:.1em;font-size:.9rem}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:.55em;
+    text-decoration:none;font-weight:700;border-radius:999px;
+    transition:transform .25s var(--ease),box-shadow .25s,background .25s,color .25s;
+  }
+  .btn-primary{
+    background:var(--ink);color:var(--paper);
+    font-size:1.02rem;padding:1em 2.1em;
+    box-shadow:0 10px 30px rgba(33,29,26,.22);
+  }
+  .btn-primary:hover{background:var(--bronze-deep);transform:translateY(-2px)}
+  .btn-ghost{
+    background:transparent;color:var(--ink);
+    border:1.5px solid var(--ink);font-size:.95rem;padding:.95em 1.7em;
+  }
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px)}
+  .btn svg{width:1.05em;height:1.05em;flex:none}
+
+  /* arch decorative */
+  .hero-arch{
+    display:none;position:absolute;right:4%;top:50%;transform:translateY(-50%);
+    width:300px;height:400px;z-index:1;
+    border-radius:160px 160px 22px 22px;
+    background:linear-gradient(160deg,#e3cdb2 0%,#c39a6e 55%,#a97e52 100%);
+    box-shadow:inset 0 0 0 10px rgba(244,239,232,.35),0 30px 60px rgba(33,29,26,.14);
+  }
+  .hero-arch::after{
+    content:"";position:absolute;inset:26px;
+    border-radius:140px 140px 14px 14px;
+    border:1px solid rgba(244,239,232,.6);
+  }
+  @media(min-width:960px){.hero-arch{display:block}.hero{padding-top:5.5rem;padding-bottom:5rem}}
+
+  /* ——— marquee ——— */
+  .marquee{
+    border-block:1px solid var(--line);
+    overflow:hidden;background:var(--paper-soft);
+    padding:.85rem 0;white-space:nowrap;
+  }
+  .marquee-track{display:inline-flex;gap:2.6rem;animation:scroll 30s linear infinite}
+  .marquee span{
+    font-family:"Fraunces",serif;font-style:italic;font-size:.98rem;color:#5c5348;
+    display:inline-flex;align-items:center;gap:2.6rem;
+  }
+  .marquee span::after{content:"✦";font-style:normal;color:var(--bronze);font-size:.7rem}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+  @media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+
+  /* ——— sections ——— */
+  section{padding:4.2rem 1.25rem}
+  .wrap{max-width:1120px;margin:0 auto}
+  .sec-head{margin-bottom:2.4rem}
+  .sec-head h2{font-size:clamp(1.9rem,5.5vw,3rem);line-height:1.12;font-weight:380}
+  .sec-head h2 em{font-style:italic;color:var(--bronze-deep)}
+  .sec-head p{margin-top:.7rem;color:#5c5348;max-width:36rem}
+
+  /* about */
+  .about{background:var(--ink);color:var(--paper);border-radius:var(--radius);margin:0 .8rem}
+  @media(min-width:760px){.about{margin:0 1.25rem}}
+  .about .wrap{display:grid;gap:2.4rem}
+  @media(min-width:860px){.about .wrap{grid-template-columns:1.15fr .85fr;align-items:center}}
+  .about h2{color:var(--paper)}
+  .about h2 em{color:var(--bronze)}
+  .about p{color:rgba(244,239,232,.78);max-width:32rem}
+  .about .eyebrow{color:var(--bronze)}
+  .about .eyebrow::before{background:var(--bronze)}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+  .stat{
+    border:1px solid rgba(244,239,232,.16);border-radius:18px;
+    padding:1.2rem .9rem;text-align:center;
+    background:rgba(244,239,232,.04);
+  }
+  .stat b{font-family:"Fraunces",serif;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:450;display:block;color:var(--bronze)}
+  .stat small{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,239,232,.6)}
+
+  /* services */
+  .grid-serv{display:grid;gap:1rem}
+  @media(min-width:640px){.grid-serv{grid-template-columns:1fr 1fr}}
+  @media(min-width:980px){.grid-serv{grid-template-columns:repeat(3,1fr)}}
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.7rem 1.5rem;
+    transition:transform .35s var(--ease),box-shadow .35s;
+  }
+  .card:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(33,29,26,.1)}
+  .card .icon{
+    width:46px;height:46px;border-radius:14px;
+    display:grid;place-items:center;margin-bottom:1.1rem;
+    background:linear-gradient(140deg,#f0e2d0,#dfc3a2);color:var(--bronze-deep);
+  }
+  .card .icon svg{width:22px;height:22px}
+  .card h3{font-size:1.22rem;margin-bottom:.4rem;font-weight:500}
+  .card p{font-size:.9rem;color:#5c5348}
+
+  /* reviews */
+  .reviews{background:var(--paper-soft);border-block:1px solid var(--line)}
+  .grid-rev{display:grid;gap:1rem}
+  @media(min-width:860px){.grid-rev{grid-template-columns:repeat(3,1fr)}}
+  .rev{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.7rem 1.5rem;display:flex;flex-direction:column;gap:.9rem;
+    transition:transform .35s var(--ease),box-shadow .35s;
+  }
+  .rev:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(33,29,26,.1)}
+  .rev .stars{color:var(--bronze);letter-spacing:.14em}
+  .rev blockquote{font-family:"Fraunces",serif;font-size:1.08rem;line-height:1.45;font-style:italic;color:#39332d}
+  .rev footer{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--stone)}
+  .rev-note{margin-top:1.6rem;font-size:.8rem;color:var(--stone);text-align:center}
+
+  /* contact */
+  .contact .wrap{display:grid;gap:2.2rem}
+  @media(min-width:900px){.contact .wrap{grid-template-columns:1fr 1fr;align-items:start}}
+  .sched{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .sched-row{
+    display:flex;justify-content:space-between;gap:1rem;
+    padding:.95rem 1.4rem;font-size:.94rem;border-bottom:1px solid var(--line);
+  }
+  .sched-row:last-child{border-bottom:none}
+  .sched-row b{font-weight:600}
+  .sched-row.closed span{color:var(--stone)}
+  .sched-row span{font-variant-numeric:tabular-nums;font-weight:500}
+  .c-item{display:flex;gap:.9rem;align-items:flex-start;margin-top:1.4rem}
+  .c-item .icon{
+    flex:none;width:42px;height:42px;border-radius:12px;
+    display:grid;place-items:center;
+    background:linear-gradient(140deg,#f0e2d0,#dfc3a2);color:var(--bronze-deep);
+  }
+  .c-item .icon svg{width:20px;height:20px}
+  .c-item b{display:block;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);font-weight:700}
+  .c-item a{text-decoration:none;font-weight:600}
+  .c-item a:hover{color:var(--bronze-deep)}
+  .contact-actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+
+  /* final CTA */
+  .cta-band{
+    margin:0 .8rem;border-radius:var(--radius);
+    background:linear-gradient(150deg,#2b2521 0%,#211d1a 55%,#3a2d21 100%);
+    color:var(--paper);text-align:center;
+    padding:4.2rem 1.5rem;position:relative;overflow:hidden;
+  }
+  @media(min-width:760px){.cta-band{margin:0 1.25rem}}
+  .cta-band::before{
+    content:"";position:absolute;width:420px;height:420px;border-radius:50%;
+    background:radial-gradient(circle,rgba(185,138,94,.35),transparent 70%);
+    top:-190px;right:-120px;filter:blur(40px);
+  }
+  .cta-band h2{font-size:clamp(2rem,6vw,3.2rem);font-weight:360;position:relative}
+  .cta-band h2 em{font-style:italic;color:var(--bronze)}
+  .cta-band p{margin:.9rem auto 1.8rem;max-width:30rem;color:rgba(244,239,232,.75);position:relative}
+  .cta-band .btn-primary{background:var(--bronze);color:#fff;position:relative}
+  .cta-band .btn-primary:hover{background:var(--bronze-deep)}
+
+  /* footer */
+  footer.site{
+    padding:2.6rem 1.25rem 5rem;text-align:center;
+  }
+  footer.site .logo{font-size:1.1rem}
+  footer.site .addr{margin-top:.7rem;font-size:.86rem;color:var(--stone)}
+  .demo-note{
+    margin:1.6rem auto 0;max-width:34rem;
+    font-size:.8rem;color:#6d635a;
+    border:1px dashed rgba(33,29,26,.25);border-radius:14px;
+    padding:.85rem 1.2rem;background:rgba(255,255,255,.5);
+  }
+  .demo-note a{font-weight:700;text-decoration:none;color:var(--bronze-deep)}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+
+<div class="demo-badge">Demo</div>
+
+<header>
+  <nav class="nav">
+    <a class="logo" href="#top">GOBÉ<em>·</em></a>
+    <ul class="nav-links">
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#resenas">Reseñas</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a class="nav-cta" href="tel:+34922882807">Pedir cita</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-blob b1"></div>
+    <div class="hero-blob b2"></div>
+    <div class="hero-arch" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <p class="eyebrow">Peluquería &amp; estética · Santa Cruz de Tenerife</p>
+      <h1>El arte de <em>verte bien,</em> cada día.</h1>
+      <p class="lead">Un equipo de estilistas dedicado a cuidar tu imagen y mejorar la calidad de tu cabello, en pleno centro de Santa Cruz, junto al mercado de La Recova.</p>
+      <div class="rating reveal">
+        <span class="stars">★★★★★</span>
+        <span>4,9 · 347 reseñas en Google</span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="tel:+34922882807">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.78.66 2.62a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.46-1.23a2 2 0 0 1 2.11-.45c.84.32 1.72.54 2.62.66A2 2 0 0 1 22 16.92z"/></svg>
+          Pedir cita · 922 88 28 07
+        </a>
+        <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Gob%C3%A9+estilistas+C.+Jos%C3%A9+Hern%C3%A1ndez+Alfonso+6+Santa+Cruz+de+Tenerife" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Cómo llegar
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Corte y peinado</span><span>Color y balayage</span><span>Barbería</span><span>Extensiones</span><span>Cejas y depilación</span><span>Manicura semipermanente</span>
+      <span>Corte y peinado</span><span>Color y balayage</span><span>Barbería</span><span>Extensiones</span><span>Cejas y depilación</span><span>Manicura semipermanente</span>
+    </div>
+  </div>
+
+  <!-- SOBRE NOSOTROS -->
+  <section id="nosotros">
+    <div class="about">
+      <section style="padding:3.6rem 1.5rem">
+        <div class="wrap">
+          <div class="reveal">
+            <p class="eyebrow">Sobre nosotros</p>
+            <h2>Un equipo que cuida tu imagen <em>y tu cabello.</em></h2>
+            <p style="margin-top:1.1rem">Somos un equipo de profesionales dedicado a cuidar la imagen de nuestros clientes mejorando la calidad de su cabello. Quien nos visita por primera vez suele venir recomendado — y sale recomendándonos.</p>
+            <p style="margin-top:.8rem">Nos encontrarás en la calle José Hernández Alfonso, a un paso del mercado de Nuestra Señora de África (La Recova), en el corazón de Santa Cruz.</p>
+          </div>
+          <div class="stats reveal">
+            <div class="stat"><b>4,9</b><small>en Google</small></div>
+            <div class="stat"><b>347</b><small>reseñas</small></div>
+            <div class="stat"><b>★★★★★</b><small>valoración</small></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Servicios</p>
+        <h2>Todo lo que tu estilo <em>necesita.</em></h2>
+        <p>Peluquería y estética en un mismo espacio, con atención personalizada de principio a fin.</p>
+      </div>
+      <div class="grid-serv">
+        <div class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88"/><path d="M14.47 14.48 20 20"/><path d="M8.12 8.12 12 12"/></svg></div>
+          <h3>Corte y peinado</h3>
+          <p>Cortes a medida y peinados que se adaptan a ti, con asesoramiento personalizado.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7c2.8 3.2 6 7.2 6 10.8a6 6 0 0 1-12 0c0-3.6 3.2-7.6 6-10.8z"/></svg></div>
+          <h3>Color y balayage</h3>
+          <p>Coloración, mechas y balayage con resultados naturales y luminosos.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21c4-3 7-8 7-13V3l6 3-2 3h-4"/><path d="M7 21H4a9 9 0 0 1 3-6.7"/></svg></div>
+          <h3>Barbería</h3>
+          <p>Corte masculino y arreglo de barba con acabado impecable.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3c0 7 2 18 8 18s8-11 8-18"/><path d="M4 3c2.5 2 13.5 2 16 0"/></svg></div>
+          <h3>Extensiones</h3>
+          <p>Extensiones de cabello para ganar largo y volumen con aspecto natural.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c3-5 8-7 10-7s7 2 10 7"/><path d="M4 12c2.5 3 5.5 4.5 8 4.5S17.5 15 20 12"/></svg></div>
+          <h3>Cejas y depilación</h3>
+          <p>Diseño de cejas y depilación para completar tu puesta a punto.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v5a3 3 0 0 1-6 0V3z"/><path d="M12 11v10"/><path d="M8 21h8"/></svg></div>
+          <h3>Manicura semipermanente</h3>
+          <p>Manos cuidadas con esmaltado semipermanente de larga duración.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEÑAS -->
+  <section class="reviews" id="resenas">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Reseñas</p>
+        <h2>Lo que dicen <em>nuestros clientes.</em></h2>
+        <p>4,9 sobre 5 con 347 reseñas en Google.</p>
+      </div>
+      <div class="grid-rev">
+        <article class="rev reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>«¡Salí encantada! Me la recomendaron y ahora la recomiendo yo.»</blockquote>
+          <footer>Reseña de Google</footer>
+        </article>
+        <article class="rev reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>«El trato fue maravilloso y el corte de pelo y la barba genial.»</blockquote>
+          <footer>Reseña de Google</footer>
+        </article>
+        <article class="rev reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>«Fantástica peluquería-estética ubicada cerca del mercado de La Recova.»</blockquote>
+          <footer>Reseña de Google</footer>
+        </article>
+      </div>
+      <p class="rev-note">Reseñas reales publicadas en Google.</p>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact" id="contacto">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow">Contacto</p>
+        <h2 style="font-size:clamp(1.9rem,5.5vw,3rem);font-weight:380">Te esperamos en <em style="font-style:italic;color:var(--bronze-deep)">el centro.</em></h2>
+        <div class="c-item">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><b>Dirección</b><a href="https://www.google.com/maps/search/?api=1&amp;query=Gob%C3%A9+estilistas+C.+Jos%C3%A9+Hern%C3%A1ndez+Alfonso+6+Santa+Cruz+de+Tenerife" target="_blank" rel="noopener">C. José Hernández Alfonso, 6 · 38003 Santa Cruz de Tenerife</a></div>
+        </div>
+        <div class="c-item">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.78.66 2.62a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.46-1.23a2 2 0 0 1 2.11-.45c.84.32 1.72.54 2.62.66A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><b>Teléfono</b><a href="tel:+34922882807">922 88 28 07</a></div>
+        </div>
+        <div class="c-item">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></div>
+          <div><b>Instagram</b><a href="https://www.instagram.com/gobe_estilistas/" target="_blank" rel="noopener">@gobe_estilistas</a></div>
+        </div>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="tel:+34922882807">Pedir cita</a>
+          <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Gob%C3%A9+estilistas+C.+Jos%C3%A9+Hern%C3%A1ndez+Alfonso+6+Santa+Cruz+de+Tenerife" target="_blank" rel="noopener">Cómo llegar</a>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="sched">
+          <div class="sched-row"><b>Lunes</b><span>10:00 – 19:00</span></div>
+          <div class="sched-row"><b>Martes</b><span>10:00 – 19:00</span></div>
+          <div class="sched-row"><b>Miércoles</b><span>10:00 – 19:00</span></div>
+          <div class="sched-row"><b>Jueves</b><span>9:00 – 19:00</span></div>
+          <div class="sched-row"><b>Viernes</b><span>9:00 – 19:00</span></div>
+          <div class="sched-row"><b>Sábado</b><span>9:00 – 14:00</span></div>
+          <div class="sched-row closed"><b>Domingo</b><span>Cerrado</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section style="padding-left:0;padding-right:0">
+    <div class="cta-band reveal">
+      <h2>Tu próxima cita, <em>a una llamada.</em></h2>
+      <p>Reserva tu hueco y déjate cuidar por un equipo con un 4,9 en Google.</p>
+      <a class="btn btn-primary" href="tel:+34922882807">Pedir cita · 922 88 28 07</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <a class="logo" href="#top">GOBÉ<em>·</em></a>
+  <p class="addr">C. José Hernández Alfonso, 6 · 38003 Santa Cruz de Tenerife · 922 88 28 07</p>
+  <p class="demo-note">DEMO creada por <a href="https://elevencanarias.com" target="_blank" rel="noopener">Eleven AI</a> — esta web puede ser tuya. Diseño de muestra sin compromiso.</p>
+</footer>
+
+<script>
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>

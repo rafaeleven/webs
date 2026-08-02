@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Tu decisión sobre la demo — Eleven AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{--tinta:#101418;--fondo:#F7F8FA;--blanco:#fff;--azul:#1B4DFF;--azul-osc:#0F2FA8;--borde:#E3E7EE;--ok:#0E9F6E;--gris:#5C6672}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--fondo);color:var(--tinta);line-height:1.6}
+  .contenedor{max-width:640px;margin:0 auto;padding:24px 20px 80px}
+  header{padding:28px 0 8px}
+  .marca{font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+  .marca span{color:var(--azul)}
+  .sub{color:var(--gris);font-size:.9rem;margin-top:2px}
+  h1{font-size:1.6rem;letter-spacing:-.02em;margin:26px 0 6px;line-height:1.25}
+  .intro{color:var(--gris);font-size:.98rem;margin-bottom:26px}
+  form{background:var(--blanco);border:1px solid var(--borde);border-radius:16px;padding:26px 22px;box-shadow:0 6px 24px rgba(16,20,24,.05)}
+  fieldset{border:0;margin-bottom:26px}
+  legend{font-weight:600;font-size:1.02rem;margin-bottom:12px}
+  label{display:block;font-size:.92rem;font-weight:500;margin:14px 0 6px}
+  input[type=text],input[type=email],input[type=tel],textarea{width:100%;padding:12px 14px;border:1.5px solid var(--borde);border-radius:10px;font:inherit;font-size:.95rem;background:#FCFDFE}
+  input:focus,textarea:focus{outline:none;border-color:var(--azul)}
+  textarea{min-height:120px;resize:vertical}
+  .opcion{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--borde);border-radius:12px;padding:14px;margin-bottom:10px;cursor:pointer;transition:.15s}
+  .opcion:hover{border-color:var(--azul)}
+  .opcion input{margin-top:4px;accent-color:var(--azul);width:18px;height:18px;flex-shrink:0}
+  .opcion b{display:block;font-size:.97rem}
+  .opcion small{color:var(--gris);font-size:.85rem}
+  .chips{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .chip{display:flex;gap:8px;align-items:center;border:1.5px solid var(--borde);border-radius:10px;padding:10px 12px;font-size:.88rem;cursor:pointer}
+  .chip input{accent-color:var(--azul);width:16px;height:16px;flex-shrink:0}
+  #bloqueCambios,#bloqueLlamada{display:none;margin-top:6px;padding-top:4px}
+  .aviso-tel{background:#EEF3FF;border:1.5px solid #C7D6FF;border-radius:12px;padding:16px;text-align:center;margin-top:10px}
+  .aviso-tel a{font-size:1.3rem;font-weight:800;color:var(--azul-osc);text-decoration:none;display:block;margin-top:4px}
+  button{width:100%;padding:16px;border:0;border-radius:12px;background:var(--azul);color:#fff;font:inherit;font-size:1.02rem;font-weight:600;cursor:pointer;margin-top:8px;transition:.15s}
+  button:hover{background:var(--azul-osc)}
+  .legal{font-size:.78rem;color:var(--gris);margin-top:16px;text-align:center}
+  .legal a{color:var(--gris)}
+  @media(max-width:480px){.chips{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="contenedor">
+  <header>
+    <div class="marca">Eleven <span>AI</span></div>
+    <div class="sub">Webs para negocios de Canarias · <a href="https://elevenprime.es" style="color:inherit">elevenprime.es</a></div>
+  </header>
+
+  <h1>¿Qué te ha parecido tu demo?</h1>
+  <p class="intro">Dinos qué quieres hacer. Sin llamadas ni compromisos: eliges tú, en un minuto.</p>
+
+  <form id="formulario" action="https://formsubmit.co/isaac.valdivia@elevencanarias.com" method="POST">
+    <input type="hidden" name="_subject" id="asunto" value="FORMULARIO decision">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="id_negocio" id="id_negocio" value="">
+
+    <fieldset>
+      <legend>Tu negocio</legend>
+      <label>Nombre del negocio</label>
+      <input type="text" name="negocio" id="negocio" required placeholder="Ej.: Restaurante La Marea">
+      <label>Tu nombre</label>
+      <input type="text" name="nombre" required placeholder="Nombre y apellido">
+      <label>Email de contacto</label>
+      <input type="email" name="email" required placeholder="tucorreo@ejemplo.com">
+      <label>Teléfono (opcional)</label>
+      <input type="tel" name="telefono" placeholder="600 000 000">
+    </fieldset>
+
+    <fieldset>
+      <legend>Tu decisión</legend>
+      <label class="opcion"><input type="radio" name="decision" value="LA QUIERO TAL CUAL" required>
+        <span><b>✅ La quiero tal cual</b><small>La demo me convence tal y como está. Enviadme el enlace de pago de la señal (50%) y haced la versión final.</small></span></label>
+      <label class="opcion"><input type="radio" name="decision" value="LA QUIERO CON CAMBIOS">
+        <span><b>✏️ La quiero, pero con cambios</b><small>Me interesa, pero quiero ajustar algunas cosas antes.</small></span></label>
+      <label class="opcion"><input type="radio" name="decision" value="QUIERO HABLAR CON LA EMPRESA">
+        <span><b>📞 Prefiero hablarlo</b><small>Tengo dudas y quiero contactar con la empresa.</small></span></label>
+      <label class="opcion"><input type="radio" name="decision" value="NO ME INTERESA">
+        <span><b>❌ No me interesa</b><small>Gracias, pero no. (No te enviaremos más correos.)</small></span></label>
+    </fieldset>
+
+    <div id="bloqueCambios">
+      <fieldset>
+        <legend>¿Qué quieres cambiar? (marca lo que necesites)</legend>
+        <div class="chips">
+          <label class="chip"><input type="checkbox" name="cambios[]" value="Colores / estilo">🎨 Colores / estilo</label>
+          <label class="chip"><input type="checkbox" name="cambios[]" value="Textos">✍️ Textos</label>
+          <label class="chip"><input type="checkbox" name="cambios[]" value="Fotos propias">📷 Usar mis fotos</label>
+          <label class="chip"><input type="checkbox" name="cambios[]" value="Logo">🔷 Mi logo</label>
+          <label class="chip"><input type="checkbox" name="cambios[]" value="Añadir secciones">➕ Añadir secciones</label>
+          <label class="chip"><input type="checkbox" name="cambios[]" value="Quitar secciones">➖ Quitar secciones</label>
+          <label class="chip"><input type="checkbox" name="cambios[]" value="Datos / horario">🕐 Datos u horario</label>
+          <label class="chip"><input type="checkbox" name="cambios[]" value="Servicios / carta / precios">📋 Servicios / carta</label>
+          <label class="chip"><input type="checkbox" name="cambios[]" value="Reservas o citas online">📅 Reservas / citas online</label>
+          <label class="chip"><input type="checkbox" name="cambios[]" value="Tienda / pedidos online">🛒 Tienda / pedidos</label>
+          <label class="chip"><input type="checkbox" name="cambios[]" value="Varios idiomas">🌍 Varios idiomas</label>
+          <label class="chip"><input type="checkbox" name="cambios[]" value="Otro">✨ Otro</label>
+        </div>
+        <label>Describe los cambios con tus palabras</label>
+        <textarea name="descripcion_cambios" placeholder="Cuéntanos qué cambiarías: colores, textos, secciones, fotos... Cuanto más detalle, mejor quedará."></textarea>
+      </fieldset>
+    </div>
+
+    <div id="bloqueLlamada">
+      <div class="aviso-tel">
+        Llámanos o escríbenos por WhatsApp cuando quieras:
+        <a href="tel:+34610102279">+34 610 10 22 79</a>
+        <small style="color:var(--gris)">También puedes dejar tu duda abajo y te respondemos por email.</small>
+      </div>
+      <label>Tu duda (opcional)</label>
+      <textarea name="duda" placeholder="Escribe aquí tu pregunta y te contestamos por email."></textarea>
+    </div>
+
+    <button type="submit">Enviar mi decisión</button>
+    <p class="legal">Al enviar aceptas que Eleven AI use estos datos solo para gestionar tu solicitud (RGPD). Nunca los cederemos a terceros. Puedes pedir su eliminación respondiendo BAJA a cualquiera de nuestros correos.<br>Eleven AI · <a href="https://elevenprime.es">elevenprime.es</a></p>
+  </form>
+</div>
+
+<script>
+  // Prellenado desde la URL: ?id=98&negocio=El%20Almacén
+  const p = new URLSearchParams(location.search);
+  if (p.get('id')) {
+    document.getElementById('id_negocio').value = p.get('id');
+    document.getElementById('asunto').value = 'FORMULARIO decision — lead ' + p.get('id');
+  }
+  if (p.get('negocio')) document.getElementById('negocio').value = p.get('negocio');
+
+  // Mostrar bloques según decisión
+  const bC = document.getElementById('bloqueCambios'), bL = document.getElementById('bloqueLlamada');
+  document.querySelectorAll('input[name=decision]').forEach(r => r.addEventListener('change', () => {
+    bC.style.display = r.value === 'LA QUIERO CON CAMBIOS' && r.checked ? 'block' : 'none';
+    bL.style.display = r.value === 'QUIERO HABLAR CON LA EMPRESA' && r.checked ? 'block' : 'none';
+  }));
+</script>
+</body>
+</html>

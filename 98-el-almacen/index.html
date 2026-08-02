@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Almacén — Parrilla Argentina en Las Palmas de Gran Canaria</title>
+<meta name="description" content="El Almacén, restaurante argentino en Las Palmas de Gran Canaria. Vacío con chimichurri casero, empanadas argentinas y milanesas. C. Pascal, 22.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --carbon:#231A14;
+    --carbon-2:#2E2119;
+    --crema:#F5EDE0;
+    --crema-2:#EFE3D0;
+    --brasa:#C0662B;
+    --brasa-claro:#E08A45;
+    --vino:#7A2E1D;
+    --texto:#3A2E24;
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--crema);
+    color:var(--texto);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Fraunces',Georgia,serif}
+  img{max-width:100%}
+  a{color:inherit}
+
+  /* ---------- Marca de agua DEMO ---------- */
+  .demo-badge{
+    position:fixed;bottom:16px;right:16px;z-index:999;
+    background:rgba(35,26,20,.85);color:var(--crema);
+    font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+    padding:7px 14px;border-radius:999px;border:1px solid rgba(245,237,224,.25);
+    backdrop-filter:blur(6px);pointer-events:none;
+  }
+  .demo-badge span{color:var(--brasa-claro)}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;
+    background:linear-gradient(rgba(24,17,12,.92),rgba(24,17,12,.75));
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(245,237,224,.08);
+  }
+  .nav-brand{
+    font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;
+    color:var(--crema);text-decoration:none;letter-spacing:.02em;
+  }
+  .nav-brand em{font-style:normal;color:var(--brasa-claro)}
+  .nav-links{display:none;gap:26px;list-style:none}
+  .nav-links a{color:rgba(245,237,224,.8);text-decoration:none;font-size:.86rem;font-weight:500;letter-spacing:.04em;transition:color .25s}
+  .nav-links a:hover{color:var(--brasa-claro)}
+  .nav-cta{
+    display:inline-flex;align-items:center;gap:7px;
+    background:var(--brasa);color:#fff;text-decoration:none;
+    font-size:.84rem;font-weight:600;padding:9px 16px;border-radius:999px;
+    transition:transform .25s,background .25s;
+  }
+  .nav-cta:hover{background:var(--brasa-claro);transform:translateY(-1px)}
+  @media(min-width:820px){
+    nav{padding:16px 44px}
+    .nav-links{display:flex}
+  }
+
+  /* ---------- Hero ---------- */
+  header{
+    position:relative;min-height:100svh;
+    display:flex;flex-direction:column;justify-content:center;
+    background:
+      radial-gradient(ellipse 85% 55% at 50% 115%, rgba(224,138,69,.32), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 50% 108%, rgba(192,102,43,.4), transparent 55%),
+      linear-gradient(175deg,#181109 0%,#231A14 55%,#2A1C12 100%);
+    color:var(--crema);
+    padding:110px 24px 90px;
+    text-align:center;overflow:hidden;
+  }
+  .hero-grid{
+    position:absolute;inset:0;opacity:.05;pointer-events:none;
+    background-image:repeating-linear-gradient(90deg,transparent 0 46px,var(--crema) 46px 47px);
+  }
+  .embers{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+  .embers i{
+    position:absolute;bottom:-8px;width:4px;height:4px;border-radius:50%;
+    background:var(--brasa-claro);opacity:0;
+    animation:rise 7s linear infinite;
+    box-shadow:0 0 8px 2px rgba(224,138,69,.55);
+  }
+  .embers i:nth-child(1){left:12%;animation-delay:0s}
+  .embers i:nth-child(2){left:28%;animation-delay:2.1s;width:3px;height:3px}
+  .embers i:nth-child(3){left:47%;animation-delay:.9s}
+  .embers i:nth-child(4){left:63%;animation-delay:3.4s;width:3px;height:3px}
+  .embers i:nth-child(5){left:78%;animation-delay:1.6s}
+  .embers i:nth-child(6){left:90%;animation-delay:4.5s;width:2px;height:2px}
+  @keyframes rise{
+    0%{transform:translateY(0) translateX(0);opacity:0}
+    12%{opacity:.9}
+    100%{transform:translateY(-92vh) translateX(24px);opacity:0}
+  }
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:10px;margin:0 auto 22px;
+    font-size:.76rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--brasa-claro);
+  }
+  .hero-eyebrow::before,.hero-eyebrow::after{content:"";width:34px;height:1px;background:linear-gradient(90deg,transparent,var(--brasa));}
+  .hero-eyebrow::after{background:linear-gradient(90deg,var(--brasa),transparent)}
+  h1{
+    font-size:clamp(3.1rem,11vw,6.2rem);font-weight:900;line-height:.98;
+    letter-spacing:-.015em;margin-bottom:20px;
+  }
+  h1 .fine{display:block;font-size:clamp(1rem,3vw,1.45rem);font-weight:400;font-style:italic;letter-spacing:.06em;margin-top:14px;color:rgba(245,237,224,.85)}
+  .hero-sub{max-width:34rem;margin:0 auto 30px;color:rgba(245,237,224,.72);font-size:1.02rem}
+  .hero-rating{
+    display:inline-flex;align-items:center;gap:9px;margin-bottom:34px;
+    background:rgba(245,237,224,.07);border:1px solid rgba(245,237,224,.14);
+    border-radius:999px;padding:9px 18px;font-size:.88rem;font-weight:500;
+  }
+  .stars{color:var(--brasa-claro);letter-spacing:2px;font-size:.95rem}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:15px 28px;border-radius:999px;text-decoration:none;
+    font-weight:600;font-size:.95rem;transition:transform .25s,box-shadow .25s,background .25s;
+  }
+  .btn svg{flex:none}
+  .btn-primary{
+    background:linear-gradient(135deg,var(--brasa),#A84F1E);color:#fff;
+    box-shadow:0 10px 28px -8px rgba(192,102,43,.55);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 34px -8px rgba(192,102,43,.7)}
+  .btn-ghost{
+    border:1px solid rgba(245,237,224,.3);color:var(--crema);
+    background:rgba(245,237,224,.04);
+  }
+  .btn-ghost:hover{background:rgba(245,237,224,.12);transform:translateY(-2px)}
+  .scroll-hint{
+    position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
+    color:rgba(245,237,224,.45);font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;
+    animation:bob 2.4s ease-in-out infinite;
+  }
+  @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
+
+  /* ---------- Cinta ---------- */
+  .ticker{
+    background:var(--vino);color:var(--crema);overflow:hidden;white-space:nowrap;
+    padding:13px 0;font-family:'Fraunces',serif;font-size:.98rem;letter-spacing:.08em;
+  }
+  .ticker-track{display:inline-block;animation:slide 30s linear infinite}
+  .ticker span{margin:0 26px;opacity:.92}
+  .ticker b{color:var(--brasa-claro);font-weight:400}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- Secciones ---------- */
+  section{padding:84px 24px}
+  .wrap{max-width:1080px;margin:0 auto}
+  .eyebrow{
+    font-size:.74rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--brasa);margin-bottom:14px;display:block;
+  }
+  h2{font-size:clamp(2rem,5.5vw,3.1rem);font-weight:700;line-height:1.08;letter-spacing:-.01em;color:var(--carbon);margin-bottom:18px}
+
+  /* Reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.on{opacity:1;transform:none}
+
+  /* ---------- Sobre ---------- */
+  .sobre .wrap{display:grid;gap:44px;align-items:center}
+  @media(min-width:860px){.sobre .wrap{grid-template-columns:1.05fr .95fr}}
+  .sobre p{margin-bottom:16px;font-size:1.03rem;color:#5A4A3B}
+  .sobre-card{
+    position:relative;border-radius:var(--radius);overflow:hidden;
+    background:
+      radial-gradient(circle at 30% 25%, rgba(224,138,69,.25), transparent 55%),
+      linear-gradient(160deg,#2E2119,#181109);
+    aspect-ratio:4/4.6;display:flex;align-items:flex-end;
+    box-shadow:0 30px 60px -30px rgba(35,26,20,.55);
+  }
+  .sobre-card svg{position:absolute;inset:0;width:100%;height:100%}
+  .sobre-card figcaption{
+    position:relative;padding:26px;color:var(--crema);
+    font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;line-height:1.5;
+    background:linear-gradient(transparent,rgba(24,17,12,.88) 40%);width:100%;
+  }
+  .datos{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+  .dato{
+    background:#fff;border:1px solid rgba(35,26,20,.08);border-radius:14px;
+    padding:14px 20px;box-shadow:0 8px 20px -12px rgba(35,26,20,.18);
+  }
+  .dato b{display:block;font-family:'Fraunces',serif;font-size:1.5rem;color:var(--brasa);line-height:1.1}
+  .dato small{font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:#8A7663;font-weight:600}
+
+  /* ---------- Carta ---------- */
+  .carta{background:var(--carbon);color:var(--crema)}
+  .carta h2{color:var(--crema)}
+  .carta .eyebrow{color:var(--brasa-claro)}
+  .carta-intro{max-width:36rem;color:rgba(245,237,224,.65);margin-bottom:48px}
+  .platos{display:grid;gap:18px}
+  @media(min-width:640px){.platos{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:980px){.platos{grid-template-columns:repeat(3,1fr)}}
+  .plato{
+    background:linear-gradient(165deg,rgba(245,237,224,.055),rgba(245,237,224,.02));
+    border:1px solid rgba(245,237,224,.1);border-radius:var(--radius);
+    padding:28px 24px;transition:transform .3s ease,border-color .3s ease,background .3s ease;
+  }
+  .plato:hover{transform:translateY(-6px);border-color:rgba(224,138,69,.45);background:rgba(245,237,224,.07)}
+  .plato-ico{
+    width:52px;height:52px;border-radius:14px;margin-bottom:18px;
+    display:grid;place-items:center;
+    background:radial-gradient(circle at 30% 30%,rgba(224,138,69,.35),rgba(122,46,29,.35));
+    border:1px solid rgba(224,138,69,.3);
+  }
+  .plato h3{font-size:1.22rem;font-weight:600;margin-bottom:8px;color:var(--crema)}
+  .plato p{font-size:.9rem;color:rgba(245,237,224,.62)}
+  .plato .tag{
+    display:inline-block;margin-top:14px;font-size:.68rem;font-weight:700;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--brasa-claro);
+  }
+
+  /* ---------- Reseñas ---------- */
+  .resenas{background:var(--crema-2)}
+  .resenas-grid{display:grid;gap:18px;margin-top:44px}
+  @media(min-width:860px){.resenas-grid{grid-template-columns:repeat(3,1fr)}}
+  .resena{
+    background:#fff;border-radius:var(--radius);padding:30px 26px;
+    border:1px solid rgba(35,26,20,.07);
+    box-shadow:0 18px 40px -24px rgba(35,26,20,.25);
+    display:flex;flex-direction:column;gap:14px;
+    transition:transform .3s ease,box-shadow .3s ease;
+  }
+  .resena:hover{transform:translateY(-5px);box-shadow:0 26px 50px -24px rgba(35,26,20,.32)}
+  .resena .stars{font-size:1rem}
+  .resena blockquote{
+    font-family:'Fraunces',serif;font-style:italic;font-size:1.06rem;line-height:1.55;color:var(--carbon);
+  }
+  .resena cite{font-style:normal;font-size:.8rem;font-weight:600;letter-spacing:.05em;color:#8A7663;text-transform:uppercase}
+  .resenas-fuente{text-align:center;margin-top:30px;font-size:.85rem;color:#8A7663}
+
+  /* ---------- Contacto ---------- */
+  .contacto .wrap{display:grid;gap:40px}
+  @media(min-width:900px){.contacto .wrap{grid-template-columns:1fr 1fr;align-items:start}}
+  .info-item{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid rgba(35,26,20,.1)}
+  .info-item:last-child{border-bottom:none}
+  .info-ico{
+    flex:none;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;
+    background:linear-gradient(135deg,rgba(192,102,43,.14),rgba(122,46,29,.1));
+    border:1px solid rgba(192,102,43,.25);color:var(--brasa);
+  }
+  .info-item h3{font-size:1.02rem;font-weight:600;color:var(--carbon);margin-bottom:3px}
+  .info-item p,.info-item a{font-size:.94rem;color:#5A4A3B;text-decoration:none}
+  .info-item a:hover{color:var(--brasa)}
+  .horario-tabla{width:100%;border-collapse:collapse;font-size:.93rem}
+  .horario-tabla td{padding:11px 4px;border-bottom:1px dashed rgba(35,26,20,.12);color:#5A4A3B}
+  .horario-tabla td:last-child{text-align:right;font-weight:500;color:var(--carbon)}
+  .horario-tabla tr.cerrado td:last-child{color:#A8907A;font-style:italic}
+  .horario-card{
+    background:#fff;border-radius:var(--radius);padding:32px 28px;
+    border:1px solid rgba(35,26,20,.07);box-shadow:0 20px 44px -26px rgba(35,26,20,.3);
+  }
+  .horario-card h3{font-family:'Fraunces',serif;font-size:1.35rem;color:var(--carbon);margin-bottom:16px}
+  .aviso-mesa{
+    margin-top:18px;font-size:.84rem;color:#8A7663;background:var(--crema);
+    border-radius:12px;padding:12px 16px;border:1px dashed rgba(192,102,43,.4);
+  }
+  .contacto-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+  .btn-dark{background:var(--carbon);color:var(--crema)}
+  .btn-dark:hover{background:var(--carbon-2);transform:translateY(-2px)}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:#181109;color:rgba(245,237,224,.6);
+    padding:52px 24px 90px;text-align:center;font-size:.88rem;
+  }
+  footer .brand{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--crema);display:block;margin-bottom:10px}
+  footer .brand em{font-style:normal;color:var(--brasa-claro)}
+  .footer-demo{
+    max-width:34rem;margin:26px auto 0;padding:16px 22px;border-radius:14px;
+    background:rgba(224,138,69,.08);border:1px solid rgba(224,138,69,.25);
+    color:rgba(245,237,224,.78);font-size:.85rem;
+  }
+  .footer-demo a{color:var(--brasa-claro);text-decoration:none;font-weight:600}
+</style>
+</head>
+<body>
+
+<div class="demo-badge">Demo <span>·</span> Eleven AI</div>
+
+<nav>
+  <a class="nav-brand" href="#top">El <em>Almacén</em></a>
+  <ul class="nav-links">
+    <li><a href="#sobre">La casa</a></li>
+    <li><a href="#carta">Especialidades</a></li>
+    <li><a href="#resenas">Reseñas</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a class="nav-cta" href="tel:+34928949249">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+    Llamar
+  </a>
+</nav>
+
+<header id="top">
+  <div class="hero-grid"></div>
+  <div class="embers"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <span class="hero-eyebrow">Parrilla argentina · Las Palmas</span>
+  <h1>El Almacén
+    <span class="fine">Fuego, vacío y empanadas como en Buenos Aires</span>
+  </h1>
+  <p class="hero-sub">Un rincón argentino pequeño y acogedor en la calle Pascal, donde la parrilla se trabaja sin prisa y la casa te recibe por tu nombre.</p>
+  <div class="hero-rating">
+    <span class="stars">★★★★★</span>
+    <span>4,8 · más de 1.700 reseñas en Google</span>
+  </div>
+  <div class="hero-ctas">
+    <a class="btn btn-primary" href="tel:+34928949249">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+      928 94 92 49
+    </a>
+    <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=El+Almac%C3%A9n+C.+Pascal+22+35007+Las+Palmas+de+Gran+Canaria" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      Cómo llegar
+    </a>
+  </div>
+  <span class="scroll-hint">Desliza</span>
+</header>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Vacío al chimichurri <b>✳</b></span><span>Empanadas argentinas <b>✳</b></span><span>Milanesa a la napolitana <b>✳</b></span><span>Parrillada <b>✳</b></span><span>Tarta de manzana casera <b>✳</b></span><span>Vacío al chimichurri <b>✳</b></span><span>Empanadas argentinas <b>✳</b></span><span>Milanesa a la napolitana <b>✳</b></span><span>Parrillada <b>✳</b></span><span>Tarta de manzana casera <b>✳</b></span>
+  </div>
+</div>
+
+<section class="sobre" id="sobre">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">La casa</span>
+      <h2>Dos hermanos argentinos y una parrilla honesta</h2>
+      <p>El Almacén es el proyecto de <strong>Gerardo y Eduardo Moreno</strong>, dos hermanos argentinos afincados en Gran Canaria. Un local pequeño e íntimo, de pocas mesas, donde cada servicio se atiende en persona y las recomendaciones salen de la casa.</p>
+      <p>Sus clientes repiten por lo mismo: producto de primera, cortes al punto y un trato que hace sentir a cada mesa como en casa. Es uno de los restaurantes mejor valorados de Las Palmas de Gran Canaria.</p>
+      <div class="datos">
+        <div class="dato"><b>4,8</b><small>en Google</small></div>
+        <div class="dato"><b>+1.700</b><small>reseñas</small></div>
+        <div class="dato"><b>100%</b><small>parrilla argentina</small></div>
+      </div>
+    </div>
+    <figure class="sobre-card reveal">
+      <svg viewBox="0 0 400 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <radialGradient id="fuego" cx="50%" cy="80%" r="70%">
+            <stop offset="0%" stop-color="#E08A45" stop-opacity=".85"/>
+            <stop offset="45%" stop-color="#C0662B" stop-opacity=".45"/>
+            <stop offset="100%" stop-color="#181109" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="humo" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#F5EDE0" stop-opacity=".14"/>
+            <stop offset="100%" stop-color="#F5EDE0" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <rect width="400" height="460" fill="#20160E"/>
+        <ellipse cx="200" cy="392" rx="190" ry="120" fill="url(#fuego)"/>
+        <g stroke="#F5EDE0" stroke-opacity=".22" stroke-width="5" stroke-linecap="round">
+          <line x1="70" y1="330" x2="330" y2="330"/>
+          <line x1="70" y1="352" x2="330" y2="352"/>
+          <line x1="70" y1="374" x2="330" y2="374"/>
+        </g>
+        <path d="M150 300 q-16-30 6-52 q20-20 12-46 q22 14 18 44 q-2 26-36 54Z" fill="#E08A45" opacity=".8"/>
+        <path d="M196 306 q-22-38 2-66 q24-26 14-58 q30 18 24 56 q-4 34-40 68Z" fill="#C0662B" opacity=".9"/>
+        <path d="M248 302 q-14-26 4-46 q16-17 10-40 q20 12 16 39 q-2 23-30 47Z" fill="#E08A45" opacity=".7"/>
+        <path d="M120 250 q30-70 80-70 t80 70" stroke="url(#humo)" stroke-width="60" fill="none" stroke-linecap="round"/>
+      </svg>
+      <figcaption>“El asado no se apura: se acompaña.” — La filosofía de la casa, a fuego lento desde la calle Pascal.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="carta" id="carta">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Especialidades</span>
+      <h2>Lo que sale de nuestra parrilla</h2>
+      <p class="carta-intro">Cocina argentina de verdad, con el vacío como bandera. Déjate recomendar por la casa: es lo que hacen los que mejor comen aquí.</p>
+    </div>
+    <div class="platos">
+      <article class="plato reveal">
+        <div class="plato-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E08A45" stroke-width="1.8" stroke-linecap="round"><path d="M4 15c0-4.4 3.6-8 8-8s8 3.6 8 8"/><line x1="2" y1="15" x2="22" y2="15"/><line x1="7" y1="19" x2="17" y2="19"/><line x1="12" y1="7" x2="12" y2="4"/></svg></div>
+        <h3>Vacío al chimichurri</h3>
+        <p>Nuestro corte estrella, jugoso y hecho a la parrilla, con chimichurri casero de la casa.</p>
+        <span class="tag">El plato bandera</span>
+      </article>
+      <article class="plato reveal">
+        <div class="plato-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E08A45" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14c0-5 4-9 9-9s9 4 9 9Z"/><path d="M6.5 12c1-2.5 3-4 5.5-4"/></svg></div>
+        <h3>Empanadas argentinas</h3>
+        <p>Hechas como manda la tradición. Las que conquistan a todo el que entra por primera vez.</p>
+        <span class="tag">Imprescindibles</span>
+      </article>
+      <article class="plato reveal">
+        <div class="plato-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E08A45" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="9.5" cy="10" r="1"/><circle cx="14.5" cy="10" r="1"/><circle cx="12" cy="14.5" r="1"/></svg></div>
+        <h3>Milanesa a la napolitana</h3>
+        <p>Crujiente por fuera, jugosa por dentro. Un clásico porteño que aquí se borda.</p>
+        <span class="tag">Clásico porteño</span>
+      </article>
+      <article class="plato reveal">
+        <div class="plato-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E08A45" stroke-width="1.8" stroke-linecap="round"><path d="M12 3q3 4 0 7t0 7"/><path d="M6 6q2 3 0 5.5T6 17"/><path d="M18 6q2 3 0 5.5T18 17"/><line x1="4" y1="21" x2="20" y2="21"/></svg></div>
+        <h3>Parrillada</h3>
+        <p>Selección de cortes a la brasa para compartir, al más puro estilo asador argentino.</p>
+        <span class="tag">Para compartir</span>
+      </article>
+      <article class="plato reveal">
+        <div class="plato-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E08A45" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16v3a6 6 0 0 1-6 6h-4a6 6 0 0 1-6-6Z"/><path d="M9 8q-1-1.5 0-3M13 8q-1-1.5 0-3"/></svg></div>
+        <h3>Secreto ibérico a la pizza</h3>
+        <p>El toque canario-argentino de la casa: secreto ibérico gratinado al estilo pizza.</p>
+        <span class="tag">Fusión de la casa</span>
+      </article>
+      <article class="plato reveal">
+        <div class="plato-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E08A45" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M12 3v3M8 5l1 2M16 5l-1 2"/></svg></div>
+        <h3>Tarta de manzana casera</h3>
+        <p>El final dulce que nadie perdona. Casera, templada y de las que se recuerdan.</p>
+        <span class="tag">Postre casero</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="resenas" id="resenas">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center">
+      <span class="eyebrow">Reseñas reales</span>
+      <h2>Lo que dicen nuestros clientes</h2>
+    </div>
+    <div class="resenas-grid">
+      <article class="resena reveal">
+        <span class="stars">★★★★★</span>
+        <blockquote>“Las empanadas nos gustaron mucho, el vacío con patatas y el servicio de 10.”</blockquote>
+        <cite>Reseña verificada · Google</cite>
+      </article>
+      <article class="resena reveal">
+        <span class="stars">★★★★★</span>
+        <blockquote>“Una milanesa absolutamente deliciosa, crujiente por fuera y jugosa por dentro.”</blockquote>
+        <cite>Reseña verificada · Google</cite>
+      </article>
+      <article class="resena reveal">
+        <span class="stars">★★★★★</span>
+        <blockquote>“La calidad de la comida no está reñida con un buen servicio, y El Almacén es un gran ejemplo.”</blockquote>
+        <cite>Reseña verificada · TripAdvisor</cite>
+      </article>
+    </div>
+    <p class="resenas-fuente reveal">Valoración media de 4,8 sobre 5 con más de 1.700 reseñas en Google.</p>
+  </div>
+</section>
+
+<section class="contacto" id="contacto">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Contacto</span>
+      <h2>Ven a conocernos</h2>
+      <div class="info-item">
+        <div class="info-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div>
+          <h3>Dirección</h3>
+          <p>C. Pascal, 22 · 35007 Las Palmas de Gran Canaria</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></div>
+        <div>
+          <h3>Teléfono</h3>
+          <p><a href="tel:+34928949249">928 94 92 49</a></p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4Z"/></svg></div>
+        <div>
+          <h3>Síguenos</h3>
+          <p><a href="https://www.facebook.com/elalmacenargentino/" target="_blank" rel="noopener">Facebook — El Almacén</a></p>
+        </div>
+      </div>
+      <div class="contacto-ctas">
+        <a class="btn btn-primary" href="tel:+34928949249">Llamar ahora</a>
+        <a class="btn btn-dark" href="https://www.google.com/maps/search/?api=1&amp;query=El+Almac%C3%A9n+C.+Pascal+22+35007+Las+Palmas+de+Gran+Canaria" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
+    </div>
+    <div class="horario-card reveal">
+      <h3>Horario</h3>
+      <table class="horario-tabla">
+        <tr><td>Lunes</td><td>19:30 – 23:00</td></tr>
+        <tr class="cerrado"><td>Martes</td><td>Cerrado</td></tr>
+        <tr class="cerrado"><td>Miércoles</td><td>Cerrado</td></tr>
+        <tr><td>Jueves</td><td>19:30 – 23:00</td></tr>
+        <tr><td>Viernes</td><td>13:30 – 16:30 · 19:30 – 23:00</td></tr>
+        <tr><td>Sábado</td><td>13:30 – 16:30 · 19:30 – 23:00</td></tr>
+        <tr><td>Domingo</td><td>13:30 – 16:30 · 19:30 – 23:00</td></tr>
+      </table>
+      <p class="aviso-mesa">Local pequeño y muy solicitado: te recomendamos llegar con tiempo para asegurar tu mesa.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="brand">El <em>Almacén</em></span>
+  <p>Parrilla argentina · C. Pascal, 22 · Las Palmas de Gran Canaria</p>
+  <div class="footer-demo">
+    Demo creada por <a href="https://elevencanarias.com" target="_blank" rel="noopener">Eleven AI</a> — esta web puede ser tuya.
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}});
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Taller Salamanca — Mecánica rápida y mantenimiento en Santa Cruz de Tenerife</title>
+<meta name="description" content="Taller Salamanca: mecánica rápida, cambio de aceite, revisión pre-ITV, frenos y mantenimiento multimarca en Santa Cruz de Tenerife. 4,5★ en Google con más de 400 reseñas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul-noche:#0A1D33;
+    --azul:#0E2A47;
+    --azul-medio:#16395C;
+    --gris:#5B6B7C;
+    --gris-claro:#EEF2F6;
+    --blanco:#FFFFFF;
+    --ambar:#F5A623;
+    --ambar-oscuro:#D98E0B;
+    --radio:16px;
+    --sombra:0 10px 30px rgba(10,29,51,.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    color:var(--azul-noche);
+    background:var(--blanco);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:'Barlow Condensed','Inter',sans-serif;letter-spacing:.3px}
+  img,svg{max-width:100%}
+  a{color:inherit}
+
+  /* ===== Marca de agua DEMO ===== */
+  .demo-badge{
+    position:fixed;left:14px;bottom:14px;z-index:999;
+    background:rgba(10,29,51,.85);color:#fff;backdrop-filter:blur(4px);
+    font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+    padding:7px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.25);
+    pointer-events:none;
+  }
+  .demo-badge span{color:var(--ambar)}
+
+  /* ===== Header ===== */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(10,29,51,.92);backdrop-filter:blur(10px);
+    color:#fff;
+  }
+  .header-in{
+    max-width:1100px;margin:0 auto;padding:12px 20px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;text-transform:uppercase;letter-spacing:1px}
+  .logo svg{flex:none}
+  .logo em{font-style:normal;color:var(--ambar)}
+  nav{display:none;gap:26px;font-size:.92rem;font-weight:500}
+  nav a{text-decoration:none;opacity:.85;transition:opacity .2s}
+  nav a:hover{opacity:1}
+  .btn-llamar-top{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--ambar);color:var(--azul-noche);text-decoration:none;
+    font-weight:700;font-size:.9rem;padding:9px 16px;border-radius:999px;
+    transition:transform .15s ease, background .2s;white-space:nowrap;
+  }
+  .btn-llamar-top:hover{background:#FFB63C;transform:translateY(-1px)}
+  @media(min-width:820px){nav{display:flex}}
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;color:#fff;overflow:hidden;
+    background:linear-gradient(160deg,#0A1D33 0%,#0E2A47 55%,#16395C 100%);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;opacity:.07;
+    background-image:repeating-linear-gradient(45deg,#fff 0 2px,transparent 2px 26px);
+  }
+  .hero::after{
+    content:"";position:absolute;right:-140px;top:-140px;width:420px;height:420px;border-radius:50%;
+    background:radial-gradient(circle,rgba(245,166,35,.28),transparent 65%);
+  }
+  .hero-in{
+    position:relative;z-index:1;max-width:1100px;margin:0 auto;
+    padding:72px 20px 84px;display:grid;gap:36px;align-items:center;
+  }
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);
+    border-radius:999px;padding:6px 14px;font-size:.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;
+  }
+  .kicker .dot{width:8px;height:8px;border-radius:50%;background:var(--ambar)}
+  .hero h1{font-size:clamp(2.6rem,7vw,4.2rem);line-height:1.05;text-transform:uppercase;font-weight:800;margin:18px 0 10px}
+  .hero h1 span{color:var(--ambar)}
+  .hero p.sub{font-size:clamp(1.02rem,2.4vw,1.2rem);max-width:560px;color:#C9D6E4}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    text-decoration:none;font-weight:700;font-size:1.02rem;
+    padding:16px 28px;border-radius:14px;transition:transform .15s ease,box-shadow .2s,background .2s;
+  }
+  .btn svg{flex:none}
+  .btn-primario{background:var(--ambar);color:var(--azul-noche);box-shadow:0 8px 24px rgba(245,166,35,.35)}
+  .btn-primario:hover{background:#FFB63C;transform:translateY(-2px)}
+  .btn-secundario{background:rgba(255,255,255,.10);color:#fff;border:1px solid rgba(255,255,255,.30)}
+  .btn-secundario:hover{background:rgba(255,255,255,.18);transform:translateY(-2px)}
+  .hero-rating{display:flex;align-items:center;gap:10px;margin-top:26px;font-size:.95rem;color:#C9D6E4}
+  .stars{color:var(--ambar);letter-spacing:2px;font-size:1.05rem}
+  .hero-art{display:none}
+  @media(min-width:900px){
+    .hero-in{grid-template-columns:1.15fr .85fr}
+    .hero-art{display:block}
+  }
+
+  /* ===== Franja de confianza ===== */
+  .confianza{background:var(--azul-noche);color:#fff;border-top:1px solid rgba(255,255,255,.08)}
+  .confianza-in{
+    max-width:1100px;margin:0 auto;padding:26px 20px;
+    display:grid;grid-template-columns:repeat(2,1fr);gap:22px;text-align:center;
+  }
+  .stat b{display:block;font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:800;color:var(--ambar);line-height:1.1}
+  .stat span{font-size:.82rem;color:#AABBCC;text-transform:uppercase;letter-spacing:1px}
+  @media(min-width:760px){.confianza-in{grid-template-columns:repeat(4,1fr)}}
+
+  /* ===== Secciones genéricas ===== */
+  section{padding:76px 20px}
+  .wrap{max-width:1100px;margin:0 auto}
+  .sec-kicker{color:var(--ambar-oscuro);font-weight:700;font-size:.82rem;text-transform:uppercase;letter-spacing:2px}
+  .sec-titulo{font-size:clamp(1.9rem,4.5vw,2.7rem);text-transform:uppercase;font-weight:800;margin:8px 0 14px;color:var(--azul)}
+  .sec-intro{color:var(--gris);max-width:640px}
+
+  /* ===== Sobre nosotros ===== */
+  .sobre{background:var(--gris-claro)}
+  .sobre-grid{display:grid;gap:34px;align-items:center}
+  .sobre-checks{list-style:none;margin-top:22px;display:grid;gap:12px}
+  .sobre-checks li{display:flex;gap:12px;align-items:flex-start;font-weight:500}
+  .sobre-checks svg{flex:none;margin-top:3px}
+  .sobre-panel{
+    background:linear-gradient(160deg,var(--azul) 0%,var(--azul-medio) 100%);
+    border-radius:22px;color:#fff;padding:34px 30px;box-shadow:var(--sombra);
+  }
+  .sobre-panel h3{font-size:1.5rem;text-transform:uppercase;margin-bottom:8px}
+  .sobre-panel p{color:#C9D6E4;font-size:.96rem}
+  .sobre-panel .big{font-family:'Barlow Condensed',sans-serif;font-size:3.4rem;font-weight:800;color:var(--ambar);line-height:1}
+  @media(min-width:880px){.sobre-grid{grid-template-columns:1.1fr .9fr}}
+
+  /* ===== Servicios ===== */
+  .servicios-grid{display:grid;gap:20px;margin-top:44px}
+  .servicio{
+    background:#fff;border:1px solid #E3E9F0;border-radius:var(--radio);
+    padding:28px 24px;box-shadow:0 2px 10px rgba(10,29,51,.04);
+    transition:transform .2s ease,box-shadow .2s ease,border-color .2s;
+  }
+  .servicio:hover{transform:translateY(-5px);box-shadow:var(--sombra);border-color:#CBD8E5}
+  .icono{
+    width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(150deg,var(--azul),var(--azul-medio));margin-bottom:18px;
+  }
+  .servicio h3{font-size:1.25rem;text-transform:uppercase;color:var(--azul);margin-bottom:8px}
+  .servicio p{color:var(--gris);font-size:.94rem}
+  @media(min-width:640px){.servicios-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:960px){.servicios-grid{grid-template-columns:repeat(3,1fr)}}
+
+  /* ===== Reseñas ===== */
+  .resenas{background:linear-gradient(160deg,#0A1D33 0%,#0E2A47 100%);color:#fff}
+  .resenas .sec-titulo{color:#fff}
+  .resenas .sec-intro{color:#AABBCC}
+  .resenas-grid{display:grid;gap:20px;margin-top:44px}
+  .resena{
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+    border-radius:var(--radio);padding:28px 24px;display:flex;flex-direction:column;gap:14px;
+  }
+  .resena .stars{font-size:1rem}
+  .resena p{font-size:.97rem;color:#DCE6F0;flex:1}
+  .resena footer{font-size:.85rem;color:#8FA3B8;font-weight:600}
+  .google-tag{display:inline-flex;align-items:center;gap:8px;margin-top:34px;font-size:.9rem;color:#AABBCC}
+  @media(min-width:880px){.resenas-grid{grid-template-columns:repeat(3,1fr)}}
+
+  /* ===== Contacto ===== */
+  .contacto-grid{display:grid;gap:24px;margin-top:44px}
+  .card-contacto{
+    background:#fff;border:1px solid #E3E9F0;border-radius:var(--radio);
+    padding:28px 24px;box-shadow:0 2px 10px rgba(10,29,51,.04);
+  }
+  .card-contacto h3{display:flex;align-items:center;gap:10px;font-size:1.15rem;text-transform:uppercase;color:var(--azul);margin-bottom:14px}
+  .card-contacto p,.card-contacto li{color:var(--gris);font-size:.95rem}
+  .horario{list-style:none}
+  .horario li{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed #E3E9F0}
+  .horario li:last-child{border-bottom:none}
+  .horario b{color:var(--azul-noche);font-weight:600}
+  .contacto-ctas{display:flex;flex-direction:column;gap:12px;margin-top:18px}
+  .btn-outline{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    border:2px solid var(--azul);color:var(--azul);text-decoration:none;font-weight:700;
+    padding:13px 22px;border-radius:14px;transition:background .2s,color .2s,transform .15s;
+  }
+  .btn-outline:hover{background:var(--azul);color:#fff;transform:translateY(-2px)}
+  .btn-lleno{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    background:var(--azul);color:#fff;text-decoration:none;font-weight:700;
+    padding:15px 22px;border-radius:14px;transition:background .2s,transform .15s;
+  }
+  .btn-lleno:hover{background:var(--azul-medio);transform:translateY(-2px)}
+  @media(min-width:880px){.contacto-grid{grid-template-columns:repeat(3,1fr)}}
+
+  /* ===== CTA final ===== */
+  .cta-final{
+    background:linear-gradient(150deg,var(--ambar) 0%,#FFC24E 100%);
+    text-align:center;color:var(--azul-noche);
+  }
+  .cta-final h2{font-size:clamp(1.9rem,4.5vw,2.6rem);text-transform:uppercase;font-weight:800}
+  .cta-final p{max-width:520px;margin:12px auto 28px;font-weight:500}
+  .cta-final .btn-negro{
+    display:inline-flex;align-items:center;gap:10px;background:var(--azul-noche);color:#fff;
+    text-decoration:none;font-weight:700;font-size:1.05rem;padding:17px 34px;border-radius:14px;
+    transition:transform .15s,background .2s;
+  }
+  .cta-final .btn-negro:hover{background:var(--azul);transform:translateY(-2px)}
+
+  /* ===== Footer ===== */
+  footer.pie{background:var(--azul-noche);color:#8FA3B8;padding:40px 20px;font-size:.85rem}
+  .pie-in{max-width:1100px;margin:0 auto;display:grid;gap:18px;text-align:center}
+  .pie-in .marca{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#fff;text-transform:uppercase;letter-spacing:1px}
+  .aviso-demo{
+    border:1px dashed rgba(255,255,255,.25);border-radius:12px;padding:14px 18px;
+    color:#C9D6E4;background:rgba(255,255,255,.04);
+  }
+  .aviso-demo a{color:var(--ambar);font-weight:600;text-decoration:none}
+
+  /* ===== Animaciones ===== */
+  .fade{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .fade.visible{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .fade{opacity:1;transform:none;transition:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-badge">Demo <span>·</span> Eleven AI</div>
+
+<header>
+  <div class="header-in">
+    <div class="logo">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M21.7 18.6 14 10.9a5.9 5.9 0 0 0-7.5-7.4L9.8 6.8 8.4 9.6l-3 .7L2.1 7a5.9 5.9 0 0 0 7.4 7.5l7.7 7.7a1.6 1.6 0 0 0 2.3 0l2.2-2.2a1.6 1.6 0 0 0 0-2.3Z" fill="#F5A623"/>
+      </svg>
+      Taller <em>&nbsp;Salamanca</em>
+    </div>
+    <nav>
+      <a href="#servicios">Servicios</a>
+      <a href="#sobre">El taller</a>
+      <a href="#resenas">Opiniones</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="btn-llamar-top" href="tel:+34617365390">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg>
+      617 36 53 90
+    </a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="hero-in">
+    <div>
+      <span class="kicker"><span class="dot"></span> Taller multimarca · Santa Cruz de Tenerife</span>
+      <h1>Tu coche, en manos <span>de confianza</span></h1>
+      <p class="sub">Mecánica rápida, mantenimiento y revisión pre-ITV en el barrio de Salamanca. Presupuesto claro antes de tocar tu coche y fotos de cada pieza que cambiamos.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primario" href="tel:+34617365390">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg>
+          Pedir cita ahora
+        </a>
+        <a class="btn btn-secundario" href="https://www.google.com/maps/search/?api=1&amp;query=Taller+Salamanca%2C+C.+Salamanca+50%2C+38006+Santa+Cruz+de+Tenerife" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
+          Cómo llegar
+        </a>
+      </div>
+      <div class="hero-rating">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <span><strong>4,5 / 5</strong> · más de 400 reseñas en Google</span>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 360 260" fill="none">
+        <rect x="20" y="150" width="320" height="8" rx="4" fill="rgba(255,255,255,.12)"/>
+        <path d="M60 150c4-26 18-46 44-52 22-5 62-6 92-2 26 3 48 16 62 34l14 20H60Z" fill="#F5A623" opacity=".92"/>
+        <path d="M104 100c20-4 56-5 84-1l6 32h-98l8-31Z" fill="#0A1D33"/>
+        <rect x="42" y="128" width="286" height="30" rx="12" fill="#FFC24E"/>
+        <circle cx="110" cy="160" r="26" fill="#0A1D33"/><circle cx="110" cy="160" r="13" fill="#5B6B7C"/>
+        <circle cx="262" cy="160" r="26" fill="#0A1D33"/><circle cx="262" cy="160" r="13" fill="#5B6B7C"/>
+        <path d="M310 70l16-16m0 0 8-2 6-10-8-8-10 6-2 8m16 6-16-16" stroke="rgba(255,255,255,.5)" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="70" cy="52" r="3" fill="rgba(255,255,255,.4)"/>
+        <circle cx="300" cy="120" r="3" fill="rgba(255,255,255,.35)"/>
+        <circle cx="40" cy="100" r="4" fill="rgba(245,166,35,.6)"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FRANJA CONFIANZA ============ -->
+<div class="confianza">
+  <div class="confianza-in">
+    <div class="stat"><b>4,5★</b><span>Valoración en Google</span></div>
+    <div class="stat"><b>+400</b><span>Reseñas de clientes</span></div>
+    <div class="stat"><b>Multimarca</b><span>Todas las marcas</span></div>
+    <div class="stat"><b>Sin sorpresas</b><span>Presupuesto previo</span></div>
+  </div>
+</div>
+
+<!-- ============ SOBRE NOSOTROS ============ -->
+<section class="sobre" id="sobre">
+  <div class="wrap sobre-grid">
+    <div class="fade">
+      <span class="sec-kicker">El taller</span>
+      <h2 class="sec-titulo">Transparencia de barrio, trabajo de primera</h2>
+      <p class="sec-intro">En Taller Salamanca tratamos tu coche como si fuera nuestro. Nuestros clientes destacan el trato cercano del equipo y una forma de trabajar muy clara: te explicamos la avería, te damos presupuesto antes de empezar y te enviamos fotos de las piezas que cambiamos.</p>
+      <ul class="sobre-checks">
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F5A623"/><path d="m7 12.5 3.2 3.2L17 9" stroke="#0A1D33" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Presupuesto detallado y claro antes de cualquier reparación
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F5A623"/><path d="m7 12.5 3.2 3.2L17 9" stroke="#0A1D33" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Fotos del antes y el después de cada pieza sustituida
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F5A623"/><path d="m7 12.5 3.2 3.2L17 9" stroke="#0A1D33" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Atención con cita previa para que no pierdas tiempo
+        </li>
+      </ul>
+    </div>
+    <div class="sobre-panel fade">
+      <span class="big">4,5★</span>
+      <h3>Lo que opinan de nosotros</h3>
+      <p>Más de 400 conductores de Santa Cruz han valorado el taller en Google. La confianza no se pide: se gana coche a coche.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICIOS ============ -->
+<section id="servicios">
+  <div class="wrap">
+    <span class="sec-kicker">Servicios</span>
+    <h2 class="sec-titulo">Todo lo que tu coche necesita</h2>
+    <p class="sec-intro">Mecánica rápida y mantenimiento multimarca, con cita previa y sin letra pequeña.</p>
+    <div class="servicios-grid">
+      <article class="servicio fade">
+        <div class="icono">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3C9 7 6.5 9.8 6.5 13a5.5 5.5 0 0 0 11 0c0-3.2-2.5-6-5.5-10Z" fill="#F5A623"/><path d="M9.5 13.5a2.5 2.5 0 0 0 2.5 2.5" stroke="#0A1D33" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Cambio de aceite y filtros</h3>
+        <p>Mantenimiento completo con cambio de aceite y filtro para alargar la vida de tu motor.</p>
+      </article>
+      <article class="servicio fade">
+        <div class="icono">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="13" rx="2.5" fill="#F5A623"/><path d="m7.5 11 2.2 2.2L16.5 8.5" stroke="#0A1D33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 21h8" stroke="#F5A623" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Revisión pre-ITV</h3>
+        <p>Revisamos tu vehículo punto por punto para que llegues a la ITV con todo en regla.</p>
+      </article>
+      <article class="servicio fade">
+        <div class="icono">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="#F5A623"/><circle cx="12" cy="12" r="4.5" fill="#0A1D33"/><circle cx="12" cy="12" r="1.8" fill="#F5A623"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke="#0A1D33" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Frenos</h3>
+        <p>Sustitución de pastillas y revisión del sistema de frenado con repuestos de calidad.</p>
+      </article>
+      <article class="servicio fade">
+        <div class="icono">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21.7 18.6 14 10.9a5.9 5.9 0 0 0-7.5-7.4L9.8 6.8 8.4 9.6l-3 .7L2.1 7a5.9 5.9 0 0 0 7.4 7.5l7.7 7.7a1.6 1.6 0 0 0 2.3 0l2.2-2.2a1.6 1.6 0 0 0 0-2.3Z" fill="#F5A623"/></svg>
+        </div>
+        <h3>Mecánica rápida</h3>
+        <p>Pequeñas reparaciones y mantenimiento del día a día, resueltos con agilidad y cita previa.</p>
+      </article>
+      <article class="servicio fade">
+        <div class="icono">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3" fill="#F5A623"/><path d="M9 12h6M12 9v6" stroke="#0A1D33" stroke-width="2" stroke-linecap="round"/><path d="M4 9h16" stroke="#0A1D33" stroke-width="1.6"/></svg>
+        </div>
+        <h3>Mantenimiento del fabricante</h3>
+        <p>Seguimos el plan de mantenimiento original de tu marca para conservar sus garantías.</p>
+      </article>
+      <article class="servicio fade">
+        <div class="icono">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0" stroke="#F5A623" stroke-width="2.4" stroke-linecap="round"/><path d="m12 13 3.5-3.5" stroke="#F5A623" stroke-width="2.4" stroke-linecap="round"/><circle cx="12" cy="13" r="1.8" fill="#F5A623"/><path d="M4 18h16" stroke="#F5A623" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Diagnóstico y reparación</h3>
+        <p>Localizamos la avería, te explicamos qué pasa y reparamos solo lo necesario.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESEÑAS ============ -->
+<section class="resenas" id="resenas">
+  <div class="wrap">
+    <span class="sec-kicker">Opiniones reales</span>
+    <h2 class="sec-titulo">Lo que dicen nuestros clientes</h2>
+    <p class="sec-intro">Reseñas publicadas en Google por conductores de Santa Cruz de Tenerife.</p>
+    <div class="resenas-grid">
+      <article class="resena fade">
+        <span class="stars" aria-label="5 estrellas">★★★★★</span>
+        <p>"El personal muy amable, responde a dudas de forma positiva, envían fotos de los cambios de piezas, cosa que se agradece."</p>
+        <footer>Gabriela R. · Google</footer>
+      </article>
+      <article class="resena fade">
+        <span class="stars" aria-label="5 estrellas">★★★★★</span>
+        <p>"Causar una buena sensación al cliente tras los servicios ofrecidos es muy importante y el Taller Salamanca maneja esta cualidad que lo hace superior a muchos."</p>
+        <footer>Peter L. · Google</footer>
+      </article>
+      <article class="resena fade">
+        <span class="stars" aria-label="5 estrellas">★★★★★</span>
+        <p>"Sinceridad desde el primer momento: te informan de la estimación del tiempo, el coste y la gravedad del arreglo."</p>
+        <footer>Cliente verificado · Google</footer>
+      </article>
+    </div>
+    <div class="google-tag">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.4Z" fill="#4285F4"/><path d="M12 22c2.7 0 5-1 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22Z" fill="#34A853"/><path d="M6.4 14a6 6 0 0 1 0-3.8V7.6H3.1a10 10 0 0 0 0 8.9L6.4 14Z" fill="#FBBC05"/><path d="M12 6c1.5 0 2.8.5 3.8 1.5L18.7 4.7A10 10 0 0 0 3.1 7.6L6.4 10.2C7.2 7.9 9.4 6 12 6Z" fill="#EA4335"/></svg>
+      Valoración media 4,5 sobre 5 · más de 400 reseñas en Google
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section id="contacto">
+  <div class="wrap">
+    <span class="sec-kicker">Contacto</span>
+    <h2 class="sec-titulo">Ven a vernos o llámanos</h2>
+    <p class="sec-intro">Estamos en pleno barrio de Salamanca, en Santa Cruz de Tenerife. Atendemos con cita previa.</p>
+    <div class="contacto-grid">
+      <div class="card-contacto fade">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#0E2A47" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
+          Dónde estamos
+        </h3>
+        <p>C. Salamanca, 50<br>38006 Santa Cruz de Tenerife<br>Santa Cruz de Tenerife</p>
+        <div class="contacto-ctas">
+          <a class="btn-outline" href="https://www.google.com/maps/search/?api=1&amp;query=Taller+Salamanca%2C+C.+Salamanca+50%2C+38006+Santa+Cruz+de+Tenerife" target="_blank" rel="noopener">Cómo llegar</a>
+        </div>
+      </div>
+      <div class="card-contacto fade">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#0E2A47" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg>
+          Habla con nosotros
+        </h3>
+        <p>Llámanos y te damos cita o resolvemos tus dudas sobre la reparación.</p>
+        <div class="contacto-ctas">
+          <a class="btn-lleno" href="tel:+34617365390">Llamar · 617 36 53 90</a>
+          <a class="btn-outline" href="https://wa.me/34617365390" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+      <div class="card-contacto fade">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#0E2A47" stroke-width="2"/><path d="M12 7v5l3.5 2" stroke="#0E2A47" stroke-width="2" stroke-linecap="round"/></svg>
+          Horario
+        </h3>
+        <ul class="horario">
+          <li><b>Lunes – Jueves</b><span>8:00 – 18:00</span></li>
+          <li><b>Viernes</b><span>8:00 – 16:00</span></li>
+          <li><b>Sábado y Domingo</b><span>Cerrado</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="cta-final">
+  <div class="wrap fade">
+    <h2>¿Tu coche necesita un repaso?</h2>
+    <p>Pide tu cita hoy y te decimos qué necesita tu coche, con presupuesto claro antes de empezar.</p>
+    <a class="btn-negro" href="tel:+34617365390">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg>
+      Llamar al 617 36 53 90
+    </a>
+  </div>
+</section>
+
+<!-- ============ PIE ============ -->
+<footer class="pie">
+  <div class="pie-in">
+    <span class="marca">Taller <span style="color:#F5A623">Salamanca</span></span>
+    <p>C. Salamanca, 50 · 38006 Santa Cruz de Tenerife · Tel. <a href="tel:+34617365390" style="color:#C9D6E4">617 36 53 90</a></p>
+    <div class="aviso-demo">
+      <strong>DEMO</strong> creada por <a href="https://elevencanarias.com" target="_blank" rel="noopener">Eleven AI</a> — esta web puede ser tuya. Maqueta de demostración sin validez comercial; datos públicos de Google.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Fade-in al hacer scroll
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
