@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Restaurante Deliciosa Marta — Cocina de mercado en Triana, Las Palmas</title>
+<meta name="description" content="Deliciosa Marta, cocina de mercado con toques modernos y canarios en el corazón de Triana, Las Palmas de Gran Canaria. Demo web.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tinta:#1C1A17;
+  --crema:#F4EFE6;
+  --crema-osc:#EAE2D3;
+  --terracota:#8C3A2B;
+  --oro:#C8A96A;
+  --gris:#6E675C;
+  --sombra:0 18px 45px rgba(28,26,23,.14);
+  --curva:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--crema);color:var(--tinta);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif}
+img{max-width:100%}
+a{color:inherit}
+
+/* ---- Barra de progreso de scroll ---- */
+#progreso{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--terracota),var(--oro));z-index:1000;transition:width .1s linear}
+
+/* ---- Marca de agua DEMO ---- */
+.marca-demo{position:fixed;bottom:14px;right:14px;z-index:999;background:rgba(28,26,23,.82);color:var(--crema);font-size:.7rem;letter-spacing:.22em;padding:.5rem .9rem;border-radius:999px;pointer-events:none;text-transform:uppercase;backdrop-filter:blur(4px)}
+
+/* ---- Nav ---- */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.2rem;background:rgba(244,239,230,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(28,26,23,.07)}
+nav .logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;letter-spacing:.02em}
+nav .logo em{color:var(--terracota);font-style:italic}
+nav .acciones{display:flex;gap:.5rem}
+.btn{display:inline-flex;align-items:center;gap:.45rem;text-decoration:none;font-weight:600;font-size:.85rem;padding:.65rem 1.15rem;border-radius:999px;transition:transform .25s var(--curva),box-shadow .25s var(--curva),background .25s}
+.btn-lleno{background:var(--tinta);color:var(--crema)}
+.btn-lleno:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 10px 24px rgba(28,26,23,.25)}
+.btn-borde{border:1.5px solid var(--tinta);color:var(--tinta)}
+.btn-borde:hover{background:var(--tinta);color:var(--crema);transform:translateY(-2px)}
+.btn-terra{background:var(--terracota);color:#fff}
+.btn-terra:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 12px 26px rgba(140,58,43,.35)}
+
+/* ---- Hero ---- */
+header.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:7rem 1.4rem 4.5rem;overflow:hidden;background:var(--tinta);color:var(--crema)}
+.hero-fondo{position:absolute;inset:-15% 0;z-index:0;will-change:transform;
+  background:
+   radial-gradient(ellipse 75% 55% at 78% 18%,rgba(200,169,106,.22),transparent 60%),
+   radial-gradient(ellipse 60% 48% at 12% 85%,rgba(140,58,43,.30),transparent 62%),
+   linear-gradient(160deg,#241f1a 0%,#1C1A17 55%,#14120f 100%)}
+.hero-fondo::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(244,239,230,.05) 1px,transparent 1.4px);background-size:26px 26px;opacity:.5}
+.hero-int{position:relative;z-index:1;max-width:960px;margin:0 auto;width:100%}
+.hero-sello{display:inline-flex;align-items:center;gap:.5rem;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--oro);border:1px solid rgba(200,169,106,.4);padding:.5rem 1rem;border-radius:999px;margin-bottom:1.6rem}
+.hero h1{font-size:clamp(2.6rem,9vw,5.4rem);line-height:1.04;font-weight:400;letter-spacing:-.01em}
+.hero h1 .palabra{display:inline-block;opacity:0;transform:translateY(.55em) rotate(2deg);animation:palabra .8s var(--curva) forwards}
+@keyframes palabra{to{opacity:1;transform:none}}
+.hero h1 em{font-style:italic;color:var(--oro)}
+.hero p.sub{margin-top:1.4rem;max-width:34rem;font-size:clamp(1rem,2.6vw,1.2rem);color:rgba(244,239,230,.78);font-weight:300}
+.hero .cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2.2rem}
+.hero .estrellas{display:flex;align-items:center;gap:.6rem;margin-top:2.6rem;font-size:.9rem;color:rgba(244,239,230,.85)}
+.hero .estrellas b{color:var(--oro);letter-spacing:.12em}
+.hero .flecha{position:absolute;left:50%;bottom:1.4rem;transform:translateX(-50%);z-index:1;color:rgba(244,239,230,.55);font-size:1.3rem;animation:flota 2.4s ease-in-out infinite}
+@keyframes flota{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* ---- Revelado en cascada ---- */
+.rev{opacity:0;transform:translateY(34px);transition:opacity .8s var(--curva),transform .8s var(--curva)}
+.rev.visto{opacity:1;transform:none}
+
+/* ---- Secciones ---- */
+section{padding:5rem 1.4rem}
+.int{max-width:1080px;margin:0 auto}
+.etiqueta{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--terracota);font-weight:600;margin-bottom:.9rem}
+h2{font-size:clamp(1.9rem,5.5vw,3rem);font-weight:400;line-height:1.12;letter-spacing:-.01em}
+h2 em{font-style:italic;color:var(--terracota)}
+
+/* Sobre */
+#sobre .int{display:grid;gap:2.4rem;grid-template-columns:1fr;align-items:start}
+#sobre p.gran{font-size:clamp(1.05rem,2.6vw,1.3rem);color:var(--gris);font-weight:300;margin-top:1.2rem}
+#sobre .tarjeta-casa{background:#fff;border-radius:22px;padding:1.8rem;box-shadow:var(--sombra);border:1px solid rgba(28,26,23,.05)}
+#sobre .tarjeta-casa h3{font-size:1.15rem;margin-bottom:.5rem}
+#sobre .tarjeta-casa p{font-size:.93rem;color:var(--gris)}
+#sobre .tarjeta-casa + .tarjeta-casa{margin-top:1rem}
+.linea-oro{width:52px;height:3px;background:var(--oro);border-radius:2px;margin:1.4rem 0}
+
+/* Cifras */
+#cifras{background:var(--tinta);color:var(--crema);padding:4.2rem 1.4rem}
+#cifras .int{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;text-align:center;max-width:880px}
+#cifras .num{font-family:'Fraunces',serif;font-size:clamp(2.1rem,7vw,3.6rem);color:var(--oro);font-weight:400}
+#cifras .num span.sufijo{font-size:.55em}
+#cifras small{display:block;margin-top:.35rem;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,239,230,.6)}
+
+/* Carta */
+#carta{background:var(--crema-osc)}
+.rejilla{display:grid;grid-template-columns:1fr;gap:1.1rem;margin-top:2.4rem}
+.plato{background:#fff;border-radius:20px;padding:1.7rem;box-shadow:0 8px 26px rgba(28,26,23,.08);border:1px solid rgba(28,26,23,.05);transition:transform .35s var(--curva),box-shadow .35s var(--curva);position:relative;overflow:hidden}
+.plato::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--terracota),var(--oro));opacity:0;transition:opacity .35s}
+.plato:hover{transform:translateY(-7px) rotate(-.4deg) scale(1.015);box-shadow:0 22px 48px rgba(28,26,23,.16)}
+.plato:hover::before{opacity:1}
+.plato .ico{font-size:1.6rem;margin-bottom:.8rem;display:block}
+.plato h3{font-size:1.18rem;font-weight:600;margin-bottom:.45rem}
+.plato p{font-size:.92rem;color:var(--gris)}
+.plato .sello-fijo{display:inline-block;margin-top:.9rem;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terracota);border:1px solid rgba(140,58,43,.3);padding:.28rem .7rem;border-radius:999px}
+
+/* Reseñas */
+#resenas blockquote{background:#fff;border-radius:20px;padding:1.8rem;box-shadow:0 8px 26px rgba(28,26,23,.07);border:1px solid rgba(28,26,23,.05);transition:transform .35s var(--curva),box-shadow .35s var(--curva)}
+#resenas blockquote:hover{transform:translateY(-6px);box-shadow:0 20px 44px rgba(28,26,23,.14)}
+#resenas .estrellitas{color:var(--oro);letter-spacing:.16em;font-size:.95rem;margin-bottom:.7rem}
+#resenas blockquote p{font-family:'Fraunces',serif;font-style:italic;font-size:1.04rem;line-height:1.5}
+#resenas cite{display:block;margin-top:1rem;font-style:normal;font-size:.82rem;color:var(--gris);font-weight:500}
+#resenas .fuente{margin-top:1.6rem;font-size:.8rem;color:var(--gris)}
+
+/* Contacto */
+#contacto{background:var(--tinta);color:var(--crema)}
+#contacto .int{display:grid;gap:2rem;grid-template-columns:1fr}
+#contacto .bloque{background:rgba(244,239,230,.05);border:1px solid rgba(244,239,230,.12);border-radius:20px;padding:1.7rem;transition:transform .3s var(--curva),background .3s}
+#contacto .bloque:hover{transform:translateY(-4px);background:rgba(244,239,230,.09)}
+#contacto .bloque h3{color:var(--oro);font-size:1.05rem;margin-bottom:.6rem}
+#contacto .bloque p{font-size:.95rem;color:rgba(244,239,230,.82)}
+#contacto .bloque a.enlace{color:var(--crema);text-decoration:underline;text-decoration-color:rgba(200,169,106,.55);text-underline-offset:4px}
+#contacto .cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:.5rem}
+#contacto .aviso-reserva{font-size:.82rem;color:rgba(244,239,230,.6);margin-top:1rem}
+
+/* Footer */
+footer{background:#14120f;color:rgba(244,239,230,.7);padding:2.6rem 1.4rem;text-align:center;font-size:.85rem}
+footer .demo-aviso{max-width:640px;margin:0 auto 1rem;background:rgba(200,169,106,.08);border:1px solid rgba(200,169,106,.3);border-radius:14px;padding:1.1rem 1.3rem;color:var(--crema)}
+footer .demo-aviso b{color:var(--oro)}
+footer small{display:block;margin-top:.8rem;color:rgba(244,239,230,.45)}
+
+/* ---- Escritorio ---- */
+@media(min-width:760px){
+  nav{padding:1rem 2.4rem}
+  #sobre .int{grid-template-columns:1.15fr .85fr;gap:3.2rem}
+  .rejilla{grid-template-columns:repeat(3,1fr)}
+  #resenas .rejilla{grid-template-columns:repeat(3,1fr)}
+  #contacto .int{grid-template-columns:repeat(3,1fr)}
+  section{padding:6.5rem 2.4rem}
+}
+/* Retardos en cascada */
+.d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}.d4{transition-delay:.38s}.d5{transition-delay:.48s}.d6{transition-delay:.58s}
+
+/* ---- Movimiento reducido ---- */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .rev,.hero h1 .palabra{opacity:1 !important;transform:none !important}
+}
+</style>
+<noscript><style>
+/* GARANTÍA DE VISIBILIDAD: sin JavaScript, todo visible */
+.rev,.hero h1 .palabra{opacity:1 !important;transform:none !important;animation:none !important}
+#progreso{display:none}
+</style></noscript>
+</head>
+<body>
+
+<div id="progreso" aria-hidden="true"></div>
+<div class="marca-demo" aria-hidden="true">Demo · Eleven AI</div>
+
+<nav aria-label="Principal">
+  <div class="logo">Deliciosa <em>Marta</em></div>
+  <div class="acciones">
+    <a class="btn btn-borde" href="https://www.google.com/maps/search/?api=1&amp;query=Restaurante+Deliciosa+Marta+C.+Escritor+Benito+P%C3%A9rez+Gald%C3%B3s+33+Las+Palmas+de+Gran+Canaria">Cómo llegar</a>
+    <a class="btn btn-lleno" href="tel:+34676377032">Reservar</a>
+  </div>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="hero-fondo" id="parallax" aria-hidden="true"></div>
+  <div class="hero-int">
+    <span class="hero-sello rev">Triana · Las Palmas de Gran Canaria</span>
+    <h1 id="titulo-hero">Cocina de mercado que <em>enamora</em> a Triana</h1>
+    <p class="sub rev d2">Producto de temporada, toques modernos y canarios y un servicio exquisito en una casa del barrio histórico de Triana. Pol Durán en la cocina, Marta Ponce en la sala.</p>
+    <div class="cta rev d3">
+      <a class="btn btn-terra" href="tel:+34676377032">&#9742;&nbsp; Reservar mesa — 676 37 70 32</a>
+      <a class="btn btn-borde" style="border-color:rgba(244,239,230,.5);color:var(--crema)" href="#carta">Ver platos de la casa</a>
+    </div>
+    <div class="estrellas rev d4"><b>&#9733;&#9733;&#9733;&#9733;&#9733;</b> 4,7 en Google · más de 700 reseñas · En la Guía Michelin</div>
+  </div>
+  <div class="flecha" aria-hidden="true">&#8595;</div>
+</header>
+
+<main>
+
+<section id="sobre">
+  <div class="int">
+    <div>
+      <p class="etiqueta rev">La casa</p>
+      <h2 class="rev d1">Una casa de Triana con <em>alma propia</em></h2>
+      <div class="linea-oro rev d2"></div>
+      <p class="gran rev d2">En una calle peatonal del barrio histórico de Triana, Deliciosa Marta se ha ganado un lugar de culto entre quienes disfrutan comiendo bien en Las Palmas. Una carta corta y muy pensada, decoración cuidada con madera y piedra vista, y esa sensación de lujo silencioso que hace querer volver.</p>
+      <p class="gran rev d3" style="margin-top:1rem">Sus clientes lo repiten en cada reseña: producto excelente, raciones generosas y un trato de sala impecable. Las mesas vuelan: se reserva con semanas —a veces meses— de antelación.</p>
+    </div>
+    <div>
+      <div class="tarjeta-casa rev d2">
+        <h3>&#127859; La cocina</h3>
+        <p>Pol Durán firma una cocina de mercado con toques modernos y canarios: platos intocables que nunca salen de la carta, sugerencias de temporada y postres con memoria.</p>
+      </div>
+      <div class="tarjeta-casa rev d3">
+        <h3>&#129346; La sala</h3>
+        <p>Marta Ponce dirige la sala con un servicio atento y minucioso, en un ambiente tranquilo pensado para disfrutar sin prisas.</p>
+      </div>
+      <div class="tarjeta-casa rev d4">
+        <h3>&#11088; El reconocimiento</h3>
+        <p>Restaurante seleccionado por la Guía Michelin y uno de los mejor valorados de Las Palmas de Gran Canaria.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cifras" aria-label="Cifras del restaurante">
+  <div class="int">
+    <div class="rev d1"><div class="num" data-contar="4.7" data-decimales="1">0</div><small>Valoración en Google</small></div>
+    <div class="rev d2"><div class="num" data-contar="708">0</div><small>Reseñas de clientes</small></div>
+    <div class="rev d3"><div class="num" data-contar="23">0</div><small>Platos en carta, todos pensados</small></div>
+  </div>
+</section>
+
+<section id="carta">
+  <div class="int">
+    <p class="etiqueta rev">Los imprescindibles</p>
+    <h2 class="rev d1">Platos que <em>nunca</em> se van de la carta</h2>
+    <div class="rejilla">
+      <article class="plato rev d1">
+        <span class="ico">&#129388;</span>
+        <h3>Steak tartar con patatas fritas</h3>
+        <p>Cortado a cuchillo, con el punto exacto de temperatura y aliño. El plato del que todo el mundo habla.</p>
+        <span class="sello-fijo">Intocable</span>
+      </article>
+      <article class="plato rev d2">
+        <span class="ico">&#127836;</span>
+        <h3>Ñoquis de trufa y parmesano</h3>
+        <p>Cremosos, equilibrados, con el aroma de la trufa y el parmesano en su justa medida.</p>
+        <span class="sello-fijo">Intocable</span>
+      </article>
+      <article class="plato rev d3">
+        <span class="ico">&#129363;</span>
+        <h3>Cochinillo deshuesado 24 h</h3>
+        <p>Asado lentamente durante 24 horas, meloso por dentro y crujiente por fuera.</p>
+        <span class="sello-fijo">De la casa</span>
+      </article>
+      <article class="plato rev d4">
+        <span class="ico">&#129361;</span>
+        <h3>La Rusa de la Barceloneta</h3>
+        <p>Para muchos, la mejor ensaladilla rusa que se prepara en la isla.</p>
+        <span class="sello-fijo">De culto</span>
+      </article>
+      <article class="plato rev d5">
+        <span class="ico">&#127793;</span>
+        <h3>Espárragos blancos trufados</h3>
+        <p>De temporada, con una mahonesa sutil de parmesano y trufa.</p>
+        <span class="sello-fijo">Temporada</span>
+      </article>
+      <article class="plato rev d6">
+        <span class="ico">&#127856;</span>
+        <h3>Natillas de la casa</h3>
+        <p>Un postre con memoria: la nostalgia de la infancia, servida con elegancia.</p>
+        <span class="sello-fijo">Dulce final</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="resenas">
+  <div class="int">
+    <p class="etiqueta rev">Lo que dicen</p>
+    <h2 class="rev d1">Reseñas <em>reales</em> de nuestros clientes</h2>
+    <div class="rejilla">
+      <blockquote class="rev d1">
+        <div class="estrellitas" aria-label="5 estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>«Nos encantó y fue una gran experiencia. Repetiremos.»</p>
+        <cite>— Manuel Agustín R., en Google</cite>
+      </blockquote>
+      <blockquote class="rev d2">
+        <div class="estrellitas" aria-label="5 estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>«La decoración es cuidada, la carta sugerente, y el servicio exquisito.»</p>
+        <cite>— Anadel, en minube</cite>
+      </blockquote>
+      <blockquote class="rev d3">
+        <div class="estrellitas" aria-label="5 estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>«Tanto el restaurante como el personal, de lujo; las raciones, contundentes.»</p>
+        <cite>— Rosa F., en minube</cite>
+      </blockquote>
+    </div>
+    <p class="fuente rev d4">Valoración media 4,7 sobre 5 con más de 700 reseñas en Google.</p>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="int" style="display:block;max-width:1080px">
+    <p class="etiqueta rev" style="color:var(--oro)">Reservas y contacto</p>
+    <h2 class="rev d1" style="color:var(--crema)">Te esperamos en <em style="color:var(--oro)">Triana</em></h2>
+    <div class="int" style="margin-top:2.2rem">
+      <div class="bloque rev d1">
+        <h3>&#128205; Dónde estamos</h3>
+        <p>C. Escritor Benito Pérez Galdós, 33<br>35002 Las Palmas de Gran Canaria</p>
+        <p style="margin-top:.8rem"><a class="enlace" href="https://www.google.com/maps/search/?api=1&amp;query=Restaurante+Deliciosa+Marta+C.+Escritor+Benito+P%C3%A9rez+Gald%C3%B3s+33+35002+Las+Palmas+de+Gran+Canaria">Ver en Google Maps &#8599;</a></p>
+      </div>
+      <div class="bloque rev d2">
+        <h3>&#128337; Horario</h3>
+        <p>Lunes a viernes<br>Comidas desde las 13:30<br>Cenas desde las 21:00</p>
+        <p style="margin-top:.8rem;color:rgba(244,239,230,.6);font-size:.85rem">Sábados y domingos cerrado</p>
+      </div>
+      <div class="bloque rev d3">
+        <h3>&#128222; Reservas</h3>
+        <p>Las mesas se agotan con semanas de antelación: llama y asegura la tuya.</p>
+        <div class="cta" style="margin-top:1rem">
+          <a class="btn btn-terra" href="tel:+34676377032">Llamar: 676 37 70 32</a>
+        </div>
+      </div>
+    </div>
+    <p class="aviso-reserva rev d4">Reserva imprescindible · Solo carta, cocina de mercado con toques canarios</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="demo-aviso">
+    <b>DEMO</b> creada por <b>Eleven AI</b> para Restaurante Deliciosa Marta — esta web puede ser tuya.
+  </div>
+  <p>Demo de muestra, sin compromiso. Datos públicos de Google y guías gastronómicas; sin relación comercial previa con el restaurante.</p>
+  <small>Página de demostración · No es la web oficial del restaurante</small>
+</footer>
+
+<script>
+(function(){
+  var reduc=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Título del hero: palabra a palabra */
+  try{
+    var t=document.getElementById('titulo-hero');
+    if(t&&!reduc){
+      var partes=t.innerHTML.split(/(<em>.*?<\/em>)/);
+      var html='',i=0,
+      envolver=function(w){return '<span class="palabra" style="animation-delay:'+(0.15+(i++)*0.09)+'s">'+w+'</span>'};
+      partes.forEach(function(p){
+        if(!p)return;
+        if(p.indexOf('<em>')===0){html+=envolver(p)+' ';}
+        else{p.trim().split(/\s+/).forEach(function(w){html+=envolver(w)+' ';});}
+      });
+      t.innerHTML=html;
+    }
+  }catch(e){}
+
+  /* Revelado en cascada con IntersectionObserver */
+  var revs=document.querySelectorAll('.rev');
+  if('IntersectionObserver' in window&&!reduc){
+    var io=new IntersectionObserver(function(entradas){
+      entradas.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('visto');io.unobserve(en.target);}
+      });
+    },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+    revs.forEach(function(el){io.observe(el)});
+  }else{
+    revs.forEach(function(el){el.classList.add('visto')});
+  }
+
+  /* Contadores animados */
+  var contado=false;
+  function animarContadores(){
+    if(contado)return;contado=true;
+    document.querySelectorAll('[data-contar]').forEach(function(el){
+      var fin=parseFloat(el.getAttribute('data-contar')),
+          dec=parseInt(el.getAttribute('data-decimales')||'0',10),
+          dur=reduc?0:1600,ini=null;
+      if(dur===0){el.textContent=fin.toFixed(dec).replace('.',',');return;}
+      function paso(ts){
+        if(!ini)ini=ts;
+        var p=Math.min((ts-ini)/dur,1),e=1-Math.pow(1-p,3);
+        el.textContent=(fin*e).toFixed(dec).replace('.',',');
+        if(p<1)requestAnimationFrame(paso);
+      }
+      requestAnimationFrame(paso);
+    });
+  }
+  var cifras=document.getElementById('cifras');
+  if(cifras&&'IntersectionObserver' in window){
+    var io2=new IntersectionObserver(function(en){
+      if(en[0].isIntersecting){animarContadores();io2.disconnect();}
+    },{threshold:0.3});
+    io2.observe(cifras);
+  }else{animarContadores();}
+
+  /* Parallax suave del hero + barra de progreso */
+  var fondo=document.getElementById('parallax'),barra=document.getElementById('progreso'),tic=false;
+  function alScroll(){
+    if(tic)return;tic=true;
+    requestAnimationFrame(function(){
+      var y=window.scrollY||window.pageYOffset;
+      if(fondo&&!reduc)fondo.style.transform='translateY('+(y*0.35)+'px)';
+      if(barra){
+        var h=document.documentElement.scrollHeight-window.innerHeight;
+        barra.style.width=(h>0?(y/h)*100:0)+'%';
+      }
+      tic=false;
+    });
+  }
+  window.addEventListener('scroll',alScroll,{passive:true});
+  alScroll();
+
+  /* Script de rescate (garantía de visibilidad): si a los 1,2s algo sigue
+     oculto con opacity:0 y sin animación activa, se fuerza visible. */
+  setTimeout(function(){
+    document.querySelectorAll('.rev,.palabra').forEach(function(el){
+      var st=window.getComputedStyle(el);
+      if(parseFloat(st.opacity)<0.1){
+        el.style.transition='none';
+        el.style.animation='none';
+        el.style.opacity='1';
+        el.style.transform='none';
+      }
+    });
+  },1200);
+})();
+</script>
+</body>
+</html>

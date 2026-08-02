@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Restaurante La Posada — cocina asturiana en Santa Cruz de Tenerife. Fabada, cachopo y chorizos a la sidra en El Toscal. Reserva: 922 24 67 72.">
+<meta name="robots" content="noindex, nofollow">
+<title>Restaurante La Posada — Cocina asturiana en Santa Cruz de Tenerife | DEMO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --vino:#5C1A23;
+    --vino-osc:#3E1017;
+    --crema:#F6EFE3;
+    --crema-osc:#EFE4D0;
+    --dorado:#C9A24B;
+    --dorado-claro:#E3C57E;
+    --tinta:#241A16;
+    --tinta-suave:#5C4F47;
+    --blanco:#FFFDF9;
+    --sombra:0 18px 45px rgba(36,26,22,.14);
+    --radio:22px;
+    --trans:all .35s cubic-bezier(.22,.61,.36,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',system-ui,-apple-system,Segoe UI,sans-serif;
+    background:var(--crema);
+    color:var(--tinta);
+    line-height:1.65;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.12;}
+
+  /* ====== GARANTÍA DE VISIBILIDAD ======
+     Por defecto TODO es visible. Solo cuando JS confirma que puede animar
+     (clase js-anim en <html>) se ocultan los .reveal para la entrada. */
+  .js-anim .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1);}
+  .js-anim .reveal.visible{opacity:1;transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    .js-anim .reveal{opacity:1 !important;transform:none !important;transition:none !important;}
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* Barra de progreso de scroll */
+  #barra-progreso{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--dorado),var(--dorado-claro));z-index:1000;transition:width .12s linear;}
+
+  /* Marca de agua DEMO */
+  .marca-demo{position:fixed;top:14px;right:-40px;transform:rotate(38deg);background:var(--vino);color:var(--crema);font-weight:700;font-size:.72rem;letter-spacing:.35em;padding:.45em 3.2em;z-index:999;box-shadow:0 6px 18px rgba(0,0,0,.25);pointer-events:none;}
+
+  /* ====== NAV ====== */
+  nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.2rem;background:rgba(62,16,23,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+  .nav-logo{font-family:'Fraunces',serif;color:var(--crema);font-size:1.15rem;font-weight:700;text-decoration:none;letter-spacing:.02em;}
+  .nav-logo span{color:var(--dorado-claro);}
+  .nav-cta{background:var(--dorado);color:var(--vino-osc);text-decoration:none;font-weight:700;font-size:.85rem;padding:.55em 1.2em;border-radius:999px;transition:var(--trans);}
+  .nav-cta:hover{background:var(--dorado-claro);transform:translateY(-2px);}
+
+  /* ====== HERO ====== */
+  .hero{
+    position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+    padding:6.5rem 1.4rem 5rem;color:var(--crema);overflow:hidden;
+    background:
+      radial-gradient(ellipse 90% 60% at 50% -10%, rgba(201,162,75,.28), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 85% 110%, rgba(201,162,75,.14), transparent 60%),
+      linear-gradient(165deg,#2A0C11 0%, var(--vino-osc) 45%, var(--vino) 100%);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:-12%;pointer-events:none;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cg fill='none' stroke='%23C9A24B' stroke-opacity='.10'%3E%3Ccircle cx='70' cy='70' r='52'/%3E%3Ccircle cx='70' cy='70' r='30'/%3E%3C/g%3E%3C/svg%3E");
+    will-change:transform;
+  }
+  .hero-badge{display:inline-flex;align-items:center;gap:.5em;border:1px solid rgba(227,197,126,.5);color:var(--dorado-claro);border-radius:999px;padding:.45em 1.2em;font-size:.78rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin-bottom:1.6rem;animation:aparecer 1s .1s cubic-bezier(.22,.61,.36,1) both;}
+  .hero h1{font-size:clamp(2.6rem,9vw,5.2rem);font-weight:700;max-width:14ch;margin:0 auto .5rem;}
+  .hero h1 .palabra{display:inline-block;animation:palabraSube .8s cubic-bezier(.22,.61,.36,1) both;}
+  .hero h1 .palabra:nth-child(1){animation-delay:.15s}
+  .hero h1 .palabra:nth-child(2){animation-delay:.28s}
+  .hero h1 .palabra:nth-child(3){animation-delay:.41s}
+  .hero h1 .palabra:nth-child(4){animation-delay:.54s}
+  .hero h1 .palabra:nth-child(5){animation-delay:.67s}
+  .hero h1 .palabra:nth-child(6){animation-delay:.80s}
+  .hero h1 em{font-style:italic;color:var(--dorado-claro);}
+  @keyframes palabraSube{from{opacity:0;transform:translateY(.6em) rotate(1.5deg);}to{opacity:1;transform:none;}}
+  @keyframes aparecer{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+  .hero-sub{font-size:clamp(1rem,2.6vw,1.25rem);color:rgba(246,239,227,.85);max-width:34ch;margin:0 auto 2.2rem;animation:aparecer 1s .95s both;}
+  .hero-linea{width:72px;height:2px;margin:0 auto 2rem;background:linear-gradient(90deg,transparent,var(--dorado),transparent);background-size:200% 100%;animation:brillo 3.5s linear infinite;}
+  @keyframes brillo{from{background-position:200% 0}to{background-position:-200% 0}}
+  .hero-botones{display:flex;flex-wrap:wrap;gap:.9rem;justify-content:center;animation:aparecer 1s 1.1s both;}
+  .btn{display:inline-flex;align-items:center;gap:.55em;text-decoration:none;font-weight:700;font-size:.98rem;padding:.95em 1.9em;border-radius:999px;transition:var(--trans);}
+  .btn svg{width:1.05em;height:1.05em;flex:none;}
+  .btn-oro{background:var(--dorado);color:var(--vino-osc);box-shadow:0 10px 30px rgba(201,162,75,.35);}
+  .btn-oro:hover{background:var(--dorado-claro);transform:translateY(-3px) scale(1.02);box-shadow:0 16px 38px rgba(201,162,75,.45);}
+  .btn-borde{border:1.5px solid rgba(246,239,227,.55);color:var(--crema);}
+  .btn-borde:hover{background:rgba(246,239,227,.12);border-color:var(--crema);transform:translateY(-3px);}
+  .hero-nota{margin-top:2rem;font-size:.82rem;color:rgba(246,239,227,.65);animation:aparecer 1s 1.25s both;}
+  .hero-flecha{position:absolute;bottom:1.6rem;left:50%;translate:-50% 0;color:rgba(246,239,227,.6);animation:flota 2.4s ease-in-out infinite;font-size:1.2rem;}
+  @keyframes flota{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+
+  /* ====== SECCIONES ====== */
+  section{padding:5.5rem 1.4rem;}
+  .contenedor{max-width:1080px;margin:0 auto;}
+  .etiqueta{display:inline-block;color:var(--vino);font-weight:700;font-size:.75rem;letter-spacing:.28em;text-transform:uppercase;margin-bottom:1rem;}
+  .etiqueta::after{content:"";display:inline-block;width:36px;height:1.5px;background:var(--dorado);vertical-align:middle;margin-left:.8em;}
+  h2{font-size:clamp(1.9rem,5.5vw,3rem);color:var(--vino-osc);margin-bottom:1.1rem;}
+
+  /* Sobre nosotros */
+  .sobre{background:var(--crema);}
+  .sobre-grid{display:grid;gap:2.5rem;align-items:center;}
+  .sobre p{color:var(--tinta-suave);font-size:1.05rem;max-width:58ch;}
+  .sobre p + p{margin-top:1rem;}
+  .sobre b{color:var(--vino);}
+  .cifras{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.4rem;}
+  .cifra{background:var(--blanco);border:1px solid var(--crema-osc);border-radius:var(--radio);padding:1.4rem 1rem;text-align:center;box-shadow:var(--sombra);transition:var(--trans);}
+  .cifra:hover{transform:translateY(-6px);}
+  .cifra .num{font-family:'Fraunces',serif;font-size:clamp(1.7rem,5vw,2.5rem);font-weight:700;color:var(--vino);display:block;}
+  .cifra .num small{font-size:.55em;color:var(--dorado);}
+  .cifra span{font-size:.8rem;color:var(--tinta-suave);font-weight:600;}
+  .estrellas{color:var(--dorado);letter-spacing:.12em;font-size:1rem;}
+
+  /* Carta */
+  .carta{background:linear-gradient(180deg,var(--crema) 0%,var(--crema-osc) 100%);}
+  .carta-grid{display:grid;grid-template-columns:1fr;gap:1.2rem;margin-top:2.4rem;}
+  .plato{background:var(--blanco);border-radius:var(--radio);padding:1.8rem 1.6rem;border:1px solid rgba(201,162,75,.25);box-shadow:var(--sombra);transition:var(--trans);position:relative;overflow:hidden;}
+  .plato::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--vino),var(--dorado));transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.22,.61,.36,1);}
+  .plato:hover{transform:translateY(-8px) rotate(-.4deg);box-shadow:0 26px 55px rgba(36,26,22,.18);}
+  .plato:hover::before{transform:scaleX(1);}
+  .plato-icono{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--vino),var(--vino-osc));color:var(--dorado-claro);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;transition:var(--trans);}
+  .plato:hover .plato-icono{transform:scale(1.12) rotate(-6deg);}
+  .plato-icono svg{width:22px;height:22px;}
+  .plato h3{font-size:1.25rem;color:var(--vino-osc);margin-bottom:.4rem;}
+  .plato p{font-size:.92rem;color:var(--tinta-suave);}
+
+  /* Reseñas */
+  .resenas{background:var(--vino-osc);color:var(--crema);position:relative;overflow:hidden;}
+  .resenas::before{content:"“";position:absolute;top:-.35em;left:.05em;font-family:'Fraunces',serif;font-size:22rem;color:rgba(201,162,75,.10);line-height:1;pointer-events:none;}
+  .resenas h2{color:var(--crema);}
+  .resenas .etiqueta{color:var(--dorado-claro);}
+  .resenas-grid{display:grid;grid-template-columns:1fr;gap:1.2rem;margin-top:2.4rem;}
+  .resena{background:rgba(246,239,227,.06);border:1px solid rgba(201,162,75,.28);border-radius:var(--radio);padding:1.8rem 1.6rem;transition:var(--trans);backdrop-filter:blur(4px);}
+  .resena:hover{transform:translateY(-6px);background:rgba(246,239,227,.10);border-color:rgba(201,162,75,.55);}
+  .resena p{font-size:.98rem;font-style:italic;color:rgba(246,239,227,.92);margin:.7rem 0 1rem;}
+  .resena footer{font-size:.8rem;font-weight:700;color:var(--dorado-claro);letter-spacing:.06em;}
+  .resenas-fuente{margin-top:1.8rem;font-size:.8rem;color:rgba(246,239,227,.55);}
+
+  /* Contacto */
+  .contacto-grid{display:grid;grid-template-columns:1fr;gap:1.2rem;margin-top:2.4rem;}
+  .tarjeta-contacto{background:var(--blanco);border:1px solid var(--crema-osc);border-radius:var(--radio);padding:1.7rem 1.5rem;box-shadow:var(--sombra);transition:var(--trans);}
+  .tarjeta-contacto:hover{transform:translateY(-6px);}
+  .tarjeta-contacto h3{font-size:1.05rem;color:var(--vino);margin-bottom:.55rem;display:flex;align-items:center;gap:.5em;}
+  .tarjeta-contacto h3 svg{width:1.1em;height:1.1em;color:var(--dorado);flex:none;}
+  .tarjeta-contacto p{font-size:.95rem;color:var(--tinta-suave);}
+  .tarjeta-contacto a{color:var(--vino);font-weight:700;text-decoration:none;border-bottom:1.5px solid var(--dorado);transition:var(--trans);}
+  .tarjeta-contacto a:hover{color:var(--dorado);}
+  .horario-tabla{list-style:none;font-size:.95rem;color:var(--tinta-suave);}
+  .horario-tabla li{display:flex;justify-content:space-between;gap:1rem;padding:.28em 0;border-bottom:1px dashed var(--crema-osc);}
+  .horario-tabla li:last-child{border-bottom:none;}
+  .horario-tabla b{color:var(--tinta);}
+  .cerrado{color:var(--vino);font-weight:700;}
+  .contacto-cta{margin-top:2.2rem;display:flex;flex-wrap:wrap;gap:.9rem;}
+  .btn-vino{background:var(--vino);color:var(--crema);box-shadow:0 10px 30px rgba(92,26,35,.3);}
+  .btn-vino:hover{background:var(--vino-osc);transform:translateY(-3px) scale(1.02);}
+  .btn-borde-vino{border:1.5px solid var(--vino);color:var(--vino);}
+  .btn-borde-vino:hover{background:var(--vino);color:var(--crema);transform:translateY(-3px);}
+
+  /* Footer */
+  footer.pie{background:var(--tinta);color:rgba(246,239,227,.75);text-align:center;padding:2.6rem 1.4rem;font-size:.88rem;}
+  footer.pie .pie-logo{font-family:'Fraunces',serif;font-size:1.2rem;color:var(--crema);margin-bottom:.6rem;}
+  footer.pie .pie-logo span{color:var(--dorado-claro);}
+  footer.pie .aviso-demo{margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid rgba(246,239,227,.15);font-size:.8rem;color:rgba(246,239,227,.55);}
+  footer.pie .aviso-demo b{color:var(--dorado-claro);}
+
+  @media (min-width:720px){
+    nav{padding:1rem 2.5rem;}
+    .carta-grid{grid-template-columns:repeat(2,1fr);}
+    .resenas-grid{grid-template-columns:repeat(3,1fr);}
+    .contacto-grid{grid-template-columns:repeat(3,1fr);}
+    .sobre-grid{grid-template-columns:1.2fr .8fr;}
+  }
+  @media (min-width:1000px){
+    .carta-grid{grid-template-columns:repeat(3,1fr);}
+  }
+</style>
+<noscript>
+  <style>
+    /* GARANTÍA DE VISIBILIDAD: sin JavaScript, todo visible siempre */
+    .reveal,.js-anim .reveal{opacity:1 !important;transform:none !important;}
+    .hero h1 .palabra,.hero-badge,.hero-sub,.hero-botones,.hero-nota{opacity:1 !important;transform:none !important;animation:none !important;}
+  </style>
+</noscript>
+</head>
+<body>
+
+<div id="barra-progreso" aria-hidden="true"></div>
+<div class="marca-demo" aria-hidden="true">DEMO</div>
+
+<nav aria-label="Principal">
+  <a class="nav-logo" href="#inicio">La <span>Posada</span></a>
+  <a class="nav-cta" href="tel:+34922246772">Llamar · 922 24 67 72</a>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-badge">El Toscal · Santa Cruz de Tenerife</div>
+    <h1 aria-label="Cocina asturiana con alma canaria">
+      <span class="palabra">Cocina</span>
+      <span class="palabra"><em>asturiana</em></span>
+      <span class="palabra">con</span>
+      <span class="palabra">alma</span>
+      <span class="palabra">canaria</span>
+    </h1>
+    <div class="hero-linea" aria-hidden="true"></div>
+    <p class="hero-sub">Fabada, cachopo y chorizos a la sidra. Un clásico de Santa Cruz en la calle Méndez Núñez.</p>
+    <div class="hero-botones">
+      <a class="btn btn-oro" href="tel:+34922246772">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+        Reservar mesa
+      </a>
+      <a class="btn btn-borde" href="https://www.google.com/maps/search/?api=1&amp;query=Restaurante+La+Posada+C.+M%C3%A9ndez+N%C3%BA%C3%B1ez+61+Santa+Cruz+de+Tenerife" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+        Cómo llegar
+      </a>
+    </div>
+    <p class="hero-nota">★ 4,5 en Google · más de 1.000 reseñas · Solete de Guía Repsol</p>
+    <div class="hero-flecha" aria-hidden="true">▾</div>
+  </section>
+
+  <!-- SOBRE NOSOTROS -->
+  <section class="sobre" id="sobre">
+    <div class="contenedor">
+      <div class="sobre-grid">
+        <div class="reveal">
+          <span class="etiqueta">Sobre nosotros</span>
+          <h2>Asturias, servida con clase en El Toscal</h2>
+          <p>En La Posada la tradición asturiana se cocina sin prisas: <b>fabada</b>, <b>cachopo</b> y platos de siempre, con producto de calidad y una cuidada selección de vinos y quesos.</p>
+          <p>Sus clientes lo resumen mejor que nadie: un trato cercano, raciones honestas y un ambiente acogedor que lo han convertido en <b>un clásico de Santa Cruz</b>, reconocido con un Solete de Guía Repsol.</p>
+        </div>
+        <div class="reveal">
+          <div class="cifras">
+            <div class="cifra">
+              <span class="num"><span class="contador" data-fin="4.5" data-decimales="1">4,5</span></span>
+              <span class="estrellas" aria-hidden="true">★★★★★</span><br>
+              <span>Valoración en Google</span>
+            </div>
+            <div class="cifra">
+              <span class="num">+<span class="contador" data-fin="1075">1.075</span></span>
+              <span>Reseñas de clientes</span>
+            </div>
+            <div class="cifra">
+              <span class="num"><small>☀</small> 1</span>
+              <span>Solete Guía Repsol</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARTA -->
+  <section class="carta" id="carta">
+    <div class="contenedor">
+      <div class="reveal">
+        <span class="etiqueta">Nuestra carta</span>
+        <h2>Los platos que todos recomiendan</h2>
+      </div>
+      <div class="carta-grid">
+        <article class="plato reveal">
+          <div class="plato-icono"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 10h16a1 1 0 0 1 1 1c0 4.4-3.1 8-8 8h-2c-4.9 0-8-3.6-8-8a1 1 0 0 1 1-1zm3-6c.6 1 .6 2-.1 3M12 4c.6 1 .6 2-.1 3M17 4c.6 1 .6 2-.1 3" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></div>
+          <h3>Fabada asturiana</h3>
+          <p>El plato estrella de la casa, también con almejas e ibérico. Receta tradicional, cuchara y pan.</p>
+        </article>
+        <article class="plato reveal">
+          <div class="plato-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="3" y="8" width="18" height="9" rx="4.5"/><path d="M7 12.5h.01M12 12.5h.01M17 12.5h.01"/></svg></div>
+          <h3>Cachopo</h3>
+          <p>Generoso, dorado y relleno como manda la tradición asturiana. El favorito de las reseñas.</p>
+        </article>
+        <article class="plato reveal">
+          <div class="plato-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M8 3v4M12 3v4M16 3v4"/><path d="M6 10h12l-1.2 9a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 10z"/></svg></div>
+          <h3>Chorizos a la sidra</h3>
+          <p>Un bocado asturiano de libro, cocinado en sidra y servido bien caliente.</p>
+        </article>
+        <article class="plato reveal">
+          <div class="plato-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4c2.5 2.2 2.5 13.8 0 16M4.5 9.5h15M4.5 14.5h15"/></svg></div>
+          <h3>Solomillo al Cabrales</h3>
+          <p>Carne al punto con la salsa del queso azul asturiano más famoso.</p>
+        </article>
+        <article class="plato reveal">
+          <div class="plato-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 16c2-5 6-8 8-8s6 3 8 8"/><path d="M3 16h18v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2z"/></svg></div>
+          <h3>Gambas al ajillo y croquetas</h3>
+          <p>Los entrantes que repiten mesa tras mesa: gambas al ajillo y croquetas de jamón caseras.</p>
+        </article>
+        <article class="plato reveal">
+          <div class="plato-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M8 21h8M12 17v4M5 5h14l-1 6a6 6 0 0 1-12 0L5 5z"/><path d="M19 6h1.5a1.5 1.5 0 0 1 0 3H18.6"/></svg></div>
+          <h3>Vinos, quesos y postres caseros</h3>
+          <p>Cuidada selección de vinos, quesos asturianos y postres hechos en casa para rematar.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEÑAS -->
+  <section class="resenas" id="resenas">
+    <div class="contenedor">
+      <div class="reveal">
+        <span class="etiqueta">Reseñas reales</span>
+        <h2>Lo que dicen nuestros clientes</h2>
+      </div>
+      <div class="resenas-grid">
+        <article class="resena reveal">
+          <div class="estrellas" aria-label="5 estrellas">★★★★★</div>
+          <p>«Me gusta mucho ir a La Posada y disfrutar comiendo su cachopo y su fabada. El atendimiento siempre es genial.»</p>
+          <footer>Eve · Reseña de Google</footer>
+        </article>
+        <article class="resena reveal">
+          <div class="estrellas" aria-label="5 estrellas">★★★★★</div>
+          <p>«Un clásico de Santa Cruz.»</p>
+          <footer>Reseña en Tripadvisor</footer>
+        </article>
+        <article class="resena reveal">
+          <div class="estrellas" aria-label="5 estrellas">★★★★★</div>
+          <p>«Best food I have had in Santa Cruz.» <span lang="es">— La mejor comida que he probado en Santa Cruz.</span></p>
+          <footer>Marcus · Visitante internacional</footer>
+        </article>
+      </div>
+      <p class="resenas-fuente reveal">Valoración media 4,5 ★ con más de 1.000 reseñas públicas en Google.</p>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contacto" id="contacto">
+    <div class="contenedor">
+      <div class="reveal">
+        <span class="etiqueta">Contacto y reservas</span>
+        <h2>Te esperamos en Méndez Núñez, 61</h2>
+      </div>
+      <div class="contacto-grid">
+        <div class="tarjeta-contacto reveal">
+          <h3><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg> Dónde estamos</h3>
+          <p>C. Méndez Núñez, 61<br>38001 Santa Cruz de Tenerife<br>Barrio de El Toscal</p>
+          <p style="margin-top:.7rem"><a href="https://www.google.com/maps/search/?api=1&amp;query=Restaurante+La+Posada+C.+M%C3%A9ndez+N%C3%BA%C3%B1ez+61+Santa+Cruz+de+Tenerife" target="_blank" rel="noopener">Ver en Google Maps</a></p>
+        </div>
+        <div class="tarjeta-contacto reveal">
+          <h3><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg> Reservas</h3>
+          <p>Se recomienda reservar con antelación.</p>
+          <p style="margin-top:.7rem"><a href="tel:+34922246772">922 24 67 72</a></p>
+          <p style="margin-top:.7rem">Síguenos en <a href="https://www.instagram.com/laposadatenerife/" target="_blank" rel="noopener">Instagram</a> y <a href="https://www.facebook.com/laposadatenerife/" target="_blank" rel="noopener">Facebook</a>.</p>
+        </div>
+        <div class="tarjeta-contacto reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Horario</h3>
+          <ul class="horario-tabla">
+            <li><b>Lunes y martes</b><span class="cerrado">Cerrado</span></li>
+            <li><b>Miércoles a sábado</b><span>Desde las 13:00</span></li>
+            <li><b>Domingo</b><span>13:00 – 23:00</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="contacto-cta reveal">
+        <a class="btn btn-vino" href="tel:+34922246772">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+          Llamar ahora
+        </a>
+        <a class="btn btn-borde-vino" href="https://www.google.com/maps/search/?api=1&amp;query=Restaurante+La+Posada+C.+M%C3%A9ndez+N%C3%BA%C3%B1ez+61+Santa+Cruz+de+Tenerife" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+          Cómo llegar
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <div class="pie-logo">La <span>Posada</span></div>
+  <p>C. Méndez Núñez, 61 · 38001 Santa Cruz de Tenerife · <a href="tel:+34922246772" style="color:var(--dorado-claro);text-decoration:none;">922 24 67 72</a></p>
+  <p class="aviso-demo"><b>DEMO</b> creada por <b>Eleven AI</b> — esta web puede ser tuya. Página de muestra no oficial, elaborada con información pública del negocio.</p>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Activar modo animado SOLO si JS funciona (garantía de visibilidad) */
+  if (!reduce && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('js-anim');
+
+    var io = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(e){
+        if (e.isIntersecting) {
+          var el = e.target;
+          var hermanos = el.parentElement ? Array.prototype.filter.call(el.parentElement.children, function(c){ return c.classList && c.classList.contains('reveal'); }) : [el];
+          var idx = hermanos.indexOf(el);
+          el.style.transitionDelay = (Math.max(idx,0) * 90) + 'ms';
+          el.classList.add('visible');
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+    /* Script de rescate anti-página-vacía: a los 1,2s, todo lo que siga
+       oculto se fuerza visible aunque el observer no haya disparado. */
+    setTimeout(function(){
+      document.querySelectorAll('.reveal:not(.visible)').forEach(function(el){
+        el.classList.add('visible');
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+    }, 1200);
+    /* Rescate extra por si algo queda con opacity 0 computada */
+    setTimeout(function(){
+      document.querySelectorAll('.reveal').forEach(function(el){
+        if (parseFloat(getComputedStyle(el).opacity) < 0.99) {
+          el.style.transition = 'none';
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        }
+      });
+    }, 2000);
+  }
+
+  /* Barra de progreso de scroll */
+  var barra = document.getElementById('barra-progreso');
+  function progreso(){
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    if (barra && max > 0) barra.style.width = ((window.scrollY / max) * 100) + '%';
+  }
+  window.addEventListener('scroll', progreso, { passive: true });
+  progreso();
+
+  /* Parallax suave en el hero */
+  var hero = document.querySelector('.hero');
+  if (hero && !reduce) {
+    window.addEventListener('scroll', function(){
+      var y = window.scrollY;
+      if (y < window.innerHeight) hero.style.backgroundPosition = '50% ' + (y * 0.25) + 'px';
+    }, { passive: true });
+  }
+
+  /* Contadores animados (el HTML ya trae el valor final: si JS falla, se ve igual) */
+  function animaContador(el){
+    var fin = parseFloat(el.getAttribute('data-fin'));
+    var dec = parseInt(el.getAttribute('data-decimales') || '0', 10);
+    var dur = 1400, t0 = null;
+    function fmt(v){
+      return dec > 0 ? v.toFixed(dec).replace('.', ',')
+                     : Math.round(v).toLocaleString('es-ES');
+    }
+    function paso(t){
+      if (!t0) t0 = t;
+      var p = Math.min((t - t0) / dur, 1);
+      var suav = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(fin * suav);
+      if (p < 1) requestAnimationFrame(paso); else el.textContent = fmt(fin);
+    }
+    requestAnimationFrame(paso);
+  }
+  if (!reduce && 'IntersectionObserver' in window) {
+    var ioNum = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(e){
+        if (e.isIntersecting) { animaContador(e.target); ioNum.unobserve(e.target); }
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('.contador').forEach(function(el){ ioNum.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>
