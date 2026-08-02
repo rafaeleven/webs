@@ -58,6 +58,7 @@
     <input type="hidden" name="_template" value="table">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="id_negocio" id="id_negocio" value="">
+    <input type="hidden" name="sede" id="sede" value="">
 
     <fieldset>
       <legend>Tu negocio</legend>
@@ -127,6 +128,7 @@
     document.getElementById('id_negocio').value = p.get('id');
     document.getElementById('asunto').value = 'FORMULARIO decision — lead ' + p.get('id');
   }
+  if (p.get('sede')) document.getElementById('sede').value = p.get('sede');
   if (p.get('negocio')) document.getElementById('negocio').value = p.get('negocio');
 
   // Mostrar bloques según decisión
