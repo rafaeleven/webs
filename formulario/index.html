@@ -128,6 +128,17 @@
     document.getElementById('id_negocio').value = p.get('id');
     document.getElementById('asunto').value = 'FORMULARIO decision — lead ' + p.get('id');
   }
+  // Modo BAJA de un clic (enlace 'darse de baja' de los emails)
+  if (p.get('baja')==='1') {
+    document.querySelector('h1').textContent='Darse de baja';
+    document.querySelector('.intro').textContent='Pulsa el botón y no volverás a recibir ningún mensaje nuestro. Efecto inmediato.';
+    document.querySelectorAll('fieldset')[0].style.display='none';
+    document.querySelectorAll('fieldset')[1].style.display='none';
+    document.querySelectorAll('input[name=negocio],input[name=nombre],input[name=email]').forEach(i=>i.required=false);
+    var r=document.querySelector('input[value="NO ME INTERESA"]'); r.checked=true;
+    document.getElementById('asunto').value='BAJA — lead '+(p.get('id')||'?');
+    document.querySelector('button').textContent='Confirmar mi baja';
+  } // fin modoBaja
   if (p.get('sede')) document.getElementById('sede').value = p.get('sede');
   if (p.get('negocio')) document.getElementById('negocio').value = p.get('negocio');
 
